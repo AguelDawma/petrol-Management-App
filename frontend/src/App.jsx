@@ -8,26 +8,32 @@ function App() {
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="cover-page">
+        <div className="overlay">
+          <header className="navbar">
+            <div className="logo">PetrolPeek</div>
+            <button className="login-btn">Manager Login</button>
+          </header>
+
+          <main className="content">
+            <h1>Fueling Your Journey</h1>
+            <p className="tagline">Real-time stock levels for petrol and diesel at your fingertips.</p>
+            
+            <div className="services-grid">
+              <div className="service-card">
+                <h3>Live Status</h3>
+                <p>Check if your station has 93, 95, or Diesel before you drive.</p>
+              </div>
+              <div className="service-card">
+                <h3>Manager Tools</h3>
+                <p>Update inventory volumes and manage supply logs instantly.</p>
+              </div>
+            </div>
+            
+            <button className="cta-button">View Live Map</button>
+          </main>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }

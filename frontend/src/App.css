@@ -37,6 +37,15 @@
   padding: 2em;
 }
 
+.service-card {
+  border: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(255, 254, 254, 0.5);
+  padding: 1.5em;
+  margin: 1em;
+  text-align: left;
+}
+
 .read-the-docs {
   color: #888;
 }
