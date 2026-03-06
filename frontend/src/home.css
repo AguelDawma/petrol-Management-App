@@ -1,6 +1,7 @@
 .home-container {
   position: relative;
-  height: 100vh;
+  /* let the container grow to at least full viewport height */
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,0 +1,64 @@
+.key-div ul li {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.key-div ul li img{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.key-div ul {
+    display: flex;
+    flex-direction: row;
+}
+
+.key-div {
+    border: solid 1px white;
+    border-radius: 8px;
+}
+
+.stations-list {
+    margin-top: 20px;
+    padding: 10px;
+    border: solid 1px white;
+    border-radius: 8px;
+}
+
+.stations-list h2 {
+    color: white;
+    margin-bottom: 10px;
+}
+
+.stations-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.station-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.station-item h3 {
+    margin: 0 0 5px 0;
+    color: white;
+}
+
+.station-item p {
+    margin: 5px 0;
+    color: white;
+}
+
+.fuels {
+    display: flex;
+    gap: 10px;
+}
+
+.fuels span {
+    color: white;
+}

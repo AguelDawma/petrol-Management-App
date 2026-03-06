@@ -13,6 +13,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* make the document and root container fill the viewport */
+html, body, #root {
+  height: 100%;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -24,10 +29,28 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* keep a minimum width but allow pages to stretch vertically */
   min-width: 320px;
+  /* do not force flex centering so that child containers can be full-height */
   min-height: 100vh;
+}
+
+/* helper classes for page wrappers to take entire viewport */
+.page-wrapper,
+.home-container,
+.cover-page {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* simple overlay utility used in Home components */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 h1 {
