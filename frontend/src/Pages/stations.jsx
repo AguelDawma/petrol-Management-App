@@ -1,42 +1,54 @@
-import { useState, useCallback } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import Header from '../components/Header'
-import Sidebar from '../components/Sidebar'
-import MapView from '../components/MapView'
+import StationCard from '../components/StationCard'
 import { stations as rawStations, getDistance } from '../data/stations'
 import './stations.css'
 
 // Default location: Lagos centre
 const DEFAULT_LAT = 6.4550
 const DEFAULT_LNG = 3.3850
+const FILTERS = [
+  { key: 'all', label: 'All' },
+  { key: 'available', label: 'Petrol In' },
+  { key: 'top', label: 'Top Rated' },
+  { key: 'nearest', label: 'Nearest' },
+]
 
 export default function Stations() {
   const [userLat, setUserLat] = useState(DEFAULT_LAT)
   const [userLng, setUserLng] = useState(DEFAULT_LNG)
   const [selectedId, setSelectedId] = useState(null)
-  const [mapLoaded, setMapLoaded] = useState(false)
+  const [query, setQuery] = useState('')
+  const [filter, setFilter] = useState('all')
 
-  const stations = rawStations.map(s => ({
+  const handleLoadMap = useCallback(() => {
+    // Map is not used in the full-page stations layout.
+    alert('Map view is disabled for this layout.')
+  }, [])
+
+  const stations = useMemo(() => rawStations.map(s => ({
     ...s,
     distance: parseFloat(getDistance(userLat, userLng, s.lat, s.lng)),
-  }))
+  })), [userLat, userLng])
 
-  const handleLoadMap = useCallback((apiKey) => {
-    if (!apiKey.trim()) {
-      alert('Please enter your Google Maps API Key first.')
-      return
-    }
-    if (window.google) {
-      setMapLoaded(true)
-      return
-    }
+  const filtered = useMemo(() => {
+    const q = query.toLowerCase().trim()
 
-    window.initMap = () => setMapLoaded(true)
-    const script = document.createElement('script')
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`
-    script.async = true
-    script.onerror = () => alert('Failed to load Google Maps. Check your API key and billing.')
-    document.head.appendChild(script)
-  }, [])
+    return stations
+      .filter(s => {
+        const matchQ = !q || s.name.toLowerCase().includes(q) || s.area.toLowerCase().includes(q)
+        const matchF =
+          filter === 'all' ? true :
+          filter === 'available' ? s.available :
+          filter === 'top' ? s.rating >= 4.2 : true
+        return matchQ && matchF
+      })
+      .sort((a, b) => {
+        if (filter === 'nearest') return a.distance - b.distance
+        if (filter === 'top') return b.rating - a.rating
+        return a.distance - b.distance
+      })
+  }, [stations, query, filter])
 
   const handleLocate = useCallback(() => {
     if (!navigator.geolocation) {
@@ -69,33 +81,56 @@ export default function Stations() {
             <div className="hero-tag">Your Local Fuel Now</div>
             <h1>Find the nearest petrol station in seconds</h1>
             <p>
-              Use the map and station list to locate nearest stations, compare availability and prices, then
-              navigate with one click.
+              Browse the full station list and get directions instantly.
             </p>
           </div>
+
           <div className="controls">
             <button className="view-go-btn" onClick={handleLocate}>Use Device Location</button>
             <button className="view-go-btn" onClick={() => setSelectedId(null)}>Reset Selection</button>
           </div>
-          <div className="results-meta">
-            <strong>{stations.length}</strong> stations found
+
+          <div className="search-filter-row">
+            <input
+              type="text"
+              placeholder="Search station or area…"
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+              className="search-input"
+            />
+            <div className="filter-buttons">
+              {FILTERS.map(f => (
+                <button
+                  key={f.key}
+                  className={`${filter === f.key ? 'active' : ''}`}
+                  onClick={() => setFilter(f.key)}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
           </div>
-          <Sidebar
-            stations={stations}
-            selectedId={selectedId}
-            onSelect={setSelectedId}
-            onNavigate={handleNavigate}
-          />
-        </section>
-        <section className="stations-map">
-          <MapView
-            stations={stations}
-            selectedId={selectedId}
-            userLat={userLat}
-            userLng={userLng}
-            mapLoaded={mapLoaded}
-            onSelectStation={setSelectedId}
-          />
+
+          <div className="results-meta">
+            <strong>{filtered.length}</strong> station{filtered.length === 1 ? '' : 's'} found
+          </div>
+
+          <div className="station-list">
+            {filtered.length === 0 ? (
+              <div className="empty-state">No stations match your search.</div>
+            ) : (
+              filtered.map((station, i) => (
+                <StationCard
+                  key={station.id}
+                  station={station}
+                  selected={selectedId === station.id}
+                  index={i}
+                  onSelect={setSelectedId}
+                  onNavigate={handleNavigate}
+                />
+              ))
+            )}
+          </div>
         </section>
       </main>
     </div>

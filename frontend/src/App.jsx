@@ -1,4 +1,3 @@
-import { useState, useCallback } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from './Pages/home'
 import Stations from './Pages/stations'
