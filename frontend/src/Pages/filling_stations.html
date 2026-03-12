@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FuelNow – Nearest Filling Stations</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --fuel-orange: #FF5A1F;
+    --fuel-dark: #0D0D0D;
+    --fuel-card: #161616;
+    --fuel-border: #2A2A2A;
+    --fuel-muted: #888;
+    --fuel-green: #22C55E;
+    --fuel-red: #EF4444;
+    --fuel-yellow: #FACC15;
+    --fuel-text: #F0EDE8;
+    --fuel-sub: #999;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--fuel-dark);
+    color: var(--fuel-text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(13,13,13,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--fuel-border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -0.03em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--fuel-orange);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.3); }
+  }
+
+  .location-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--fuel-card);
+    border: 1px solid var(--fuel-border);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    color: var(--fuel-sub);
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .location-pill:hover { border-color: var(--fuel-orange); }
+
+  .location-pin { color: var(--fuel-orange); font-size: 1rem; }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    padding: 3.5rem 2rem 2.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,90,31,0.12);
+    border: 1px solid rgba(255,90,31,0.3);
+    color: var(--fuel-orange);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 999px;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    margin-bottom: 0.6rem;
+  }
+
+  .hero h1 span { color: var(--fuel-orange); }
+
+  .hero p {
+    color: var(--fuel-sub);
+    font-size: 1rem;
+    font-weight: 300;
+    max-width: 480px;
+    line-height: 1.6;
+  }
+
+  /* Search & Filter bar */
+  .controls {
+    max-width: 1100px;
+    margin: 0 auto 2.5rem;
+    padding: 0 2rem;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    z-index: 1;
+    position: relative;
+  }
+
+  .search-box {
+    flex: 1;
+    min-width: 220px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--fuel-card);
+    border: 1px solid var(--fuel-border);
+    border-radius: 12px;
+    padding: 10px 16px;
+    transition: border-color 0.2s;
+  }
+
+  .search-box:focus-within { border-color: var(--fuel-orange); }
+
+  .search-box input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--fuel-text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+
+  .search-box input::placeholder { color: var(--fuel-muted); }
+
+  .search-icon { color: var(--fuel-muted); font-size: 1rem; }
+
+  .filter-btn {
+    background: var(--fuel-card);
+    border: 1px solid var(--fuel-border);
+    color: var(--fuel-text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--fuel-orange);
+    border-color: var(--fuel-orange);
+    color: white;
+  }
+
+  .sort-select {
+    background: var(--fuel-card);
+    border: 1px solid var(--fuel-border);
+    color: var(--fuel-text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .sort-select:focus { border-color: var(--fuel-orange); }
+
+  /* Results count */
+  .results-meta {
+    max-width: 1100px;
+    margin: 0 auto 1.2rem;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+    position: relative;
+  }
+
+  .results-meta span {
+    font-size: 0.82rem;
+    color: var(--fuel-sub);
+  }
+
+  .results-meta strong { color: var(--fuel-text); }
+
+  /* Station Grid */
+  .grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+    z-index: 1;
+    position: relative;
+  }
+
+  /* Station Card */
+  .card {
+    background: var(--fuel-card);
+    border: 1px solid var(--fuel-border);
+    border-radius: 18px;
+    padding: 22px;
+    cursor: pointer;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    animation: fadeUp 0.5s ease both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(255,90,31,0.06), transparent 60%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,90,31,0.5);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,90,31,0.15);
+  }
+
+  .card:hover::after { opacity: 1; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.1s; }
+  .card:nth-child(3) { animation-delay: 0.15s; }
+  .card:nth-child(4) { animation-delay: 0.2s; }
+  .card:nth-child(5) { animation-delay: 0.25s; }
+  .card:nth-child(6) { animation-delay: 0.3s; }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+
+  .station-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .brand-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 800;
+    font-family: 'Syne', sans-serif;
+    flex-shrink: 0;
+  }
+
+  .station-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .station-brand-label {
+    font-size: 0.73rem;
+    color: var(--fuel-sub);
+    margin-top: 2px;
+  }
+
+  /* Availability badge */
+  .badge {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    flex-shrink: 0;
+  }
+
+  .badge.available {
+    background: rgba(34,197,94,0.12);
+    color: var(--fuel-green);
+    border: 1px solid rgba(34,197,94,0.25);
+  }
+
+  .badge.unavailable {
+    background: rgba(239,68,68,0.1);
+    color: var(--fuel-red);
+    border: 1px solid rgba(239,68,68,0.2);
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .badge.available .badge-dot { animation: pulse 2s infinite; }
+
+  /* Star Rating */
+  .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .stars {
+    display: flex;
+    gap: 2px;
+  }
+
+  .star {
+    font-size: 0.95rem;
+    line-height: 1;
+  }
+
+  .star.full { color: var(--fuel-yellow); }
+  .star.half { 
+    color: var(--fuel-yellow);
+    position: relative;
+  }
+  .star.empty { color: #3A3A3A; }
+
+  .rating-score {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--fuel-text);
+    letter-spacing: -0.02em;
+  }
+
+  .rating-count {
+    font-size: 0.75rem;
+    color: var(--fuel-sub);
+  }
+
+  /* Rating bar */
+  .rating-bar-wrap {
+    margin-bottom: 14px;
+  }
+
+  .rating-bar-bg {
+    height: 4px;
+    background: #2A2A2A;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .rating-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--fuel-orange), #FACC15);
+    border-radius: 999px;
+    transition: width 1s ease;
+  }
+
+  /* Info row */
+  .info-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.78rem;
+    color: var(--fuel-sub);
+  }
+
+  .info-icon { font-size: 0.9rem; }
+
+  /* Fuel chips */
+  .fuel-chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .chip {
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 6px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .chip.petrol { background: rgba(255,90,31,0.15); color: #FF7A44; border: 1px solid rgba(255,90,31,0.2); }
+  .chip.diesel { background: rgba(59,130,246,0.12); color: #60A5FA; border: 1px solid rgba(59,130,246,0.2); }
+  .chip.lpg { background: rgba(168,85,247,0.12); color: #C084FC; border: 1px solid rgba(168,85,247,0.2); }
+  .chip.unavail { background: #1E1E1E; color: #555; border: 1px solid #2A2A2A; text-decoration: line-through; }
+
+  /* Price */
+  .price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 14px;
+    border-top: 1px solid var(--fuel-border);
+  }
+
+  .price-label { font-size: 0.72rem; color: var(--fuel-sub); }
+
+  .price-value {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--fuel-orange);
+  }
+
+  .price-unit { font-size: 0.7rem; color: var(--fuel-sub); font-weight: 400; }
+
+  .nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--fuel-text);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .nav-btn:hover {
+    background: var(--fuel-orange);
+    border-color: var(--fuel-orange);
+  }
+
+  /* No results */
+  .no-results {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--fuel-sub);
+    font-size: 0.9rem;
+  }
+
+  .no-results .big { font-size: 3rem; margin-bottom: 1rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <span class="logo-dot"></span>
+    FuelNow
+  </div>
+  <div class="location-pill">
+    <span class="location-pin">📍</span>
+    Lagos, Nigeria
+    <span style="color:#555; margin-left:4px;">▾</span>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-tag">⚡ Live Availability</div>
+  <h1>Find Petrol Near <span>You</span></h1>
+  <p>Real-time filling station availability, ratings, and prices — sorted by distance from your location.</p>
+</div>
+
+<div class="controls">
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search station name or area…" oninput="filterStations()">
+  </div>
+  <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+  <button class="filter-btn" onclick="setFilter('available', this)">Petrol Available</button>
+  <button class="filter-btn" onclick="setFilter('4star', this)">4★ & Above</button>
+  <select class="sort-select" id="sortSelect" onchange="filterStations()">
+    <option value="distance">Sort: Nearest First</option>
+    <option value="rating">Sort: Highest Rated</option>
+    <option value="price">Sort: Lowest Price</option>
+  </select>
+</div>
+
+<div class="results-meta">
+  <span>Showing <strong id="resultCount">6</strong> stations</span>
+  <span id="lastUpdated" style="font-size:0.75rem; color:#555;">Updated just now</span>
+</div>
+
+<div class="grid" id="stationGrid"></div>
+
+<script>
+const stations = [
+  {
+    id: 1,
+    name: "NNPC Mega Station",
+    brand: "NNPC",
+    brandColor: "#16A34A",
+    brandBg: "rgba(22,163,74,0.15)",
+    brandEmoji: "⛽",
+    area: "Victoria Island",
+    distance: 0.4,
+    rating: 4.7,
+    reviewCount: 214,
+    available: true,
+    fuels: ["petrol", "diesel", "lpg"],
+    price: 617,
+    hours: "24 hrs",
+  },
+  {
+    id: 2,
+    name: "Total Energies",
+    brand: "TotalEnergies",
+    brandColor: "#EA580C",
+    brandBg: "rgba(234,88,12,0.15)",
+    brandEmoji: "⛽",
+    area: "Lekki Phase 1",
+    distance: 1.2,
+    rating: 4.3,
+    reviewCount: 187,
+    available: true,
+    fuels: ["petrol", "diesel"],
+    price: 620,
+    hours: "6am – 10pm",
+  },
+  {
+    id: 3,
+    name: "Conoil Station",
+    brand: "Conoil",
+    brandColor: "#2563EB",
+    brandBg: "rgba(37,99,235,0.15)",
+    brandEmoji: "⛽",
+    area: "Ikeja GRA",
+    distance: 2.1,
+    rating: 3.8,
+    reviewCount: 93,
+    available: false,
+    fuels: ["diesel", "lpg"],
+    price: null,
+    hours: "7am – 9pm",
+  },
+  {
+    id: 4,
+    name: "Oando Express",
+    brand: "Oando",
+    brandColor: "#DC2626",
+    brandBg: "rgba(220,38,38,0.15)",
+    brandEmoji: "⛽",
+    area: "Surulere",
+    distance: 3.4,
+    rating: 4.1,
+    reviewCount: 156,
+    available: true,
+    fuels: ["petrol", "diesel"],
+    price: 615,
+    hours: "24 hrs",
+  },
+  {
+    id: 5,
+    name: "Ardova Filling Station",
+    brand: "Ardova",
+    brandColor: "#7C3AED",
+    brandBg: "rgba(124,58,237,0.15)",
+    brandEmoji: "⛽",
+    area: "Maryland",
+    distance: 4.0,
+    rating: 4.5,
+    reviewCount: 112,
+    available: true,
+    fuels: ["petrol", "diesel", "lpg"],
+    price: 618,
+    hours: "6am – 11pm",
+  },
+  {
+    id: 6,
+    name: "MRS Petroleum",
+    brand: "MRS",
+    brandColor: "#D97706",
+    brandBg: "rgba(217,119,6,0.15)",
+    brandEmoji: "⛽",
+    area: "Gbagada",
+    distance: 5.3,
+    rating: 3.5,
+    reviewCount: 47,
+    available: false,
+    fuels: ["petrol"],
+    price: null,
+    hours: "7am – 8pm",
+  },
+];
+
+let currentFilter = 'all';
+
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterStations();
+}
+
+function renderStars(rating) {
+  let html = '';
+  for (let i = 1; i <= 5; i++) {
+    if (rating >= i) html += `<span class="star full">★</span>`;
+    else if (rating >= i - 0.5) html += `<span class="star half">★</span>`;
+    else html += `<span class="star empty">★</span>`;
+  }
+  return html;
+}
+
+function renderFuelChips(fuels, available) {
+  const all = ['petrol','diesel','lpg'];
+  return all.map(f => {
+    const has = fuels.includes(f);
+    if (f === 'petrol') return `<span class="chip ${has && available ? 'petrol' : 'unavail'}">${has ? 'PMS' : 'No PMS'}</span>`;
+    if (f === 'diesel') return `<span class="chip ${has ? 'diesel' : 'unavail'}">${has ? 'AGO' : 'No AGO'}</span>`;
+    if (f === 'lpg') return `<span class="chip ${has ? 'lpg' : 'unavail'}">${has ? 'LPG' : 'No LPG'}</span>`;
+  }).join('');
+}
+
+function filterStations() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const sort = document.getElementById('sortSelect').value;
+
+  let filtered = stations.filter(s => {
+    const matchSearch = s.name.toLowerCase().includes(query) || s.area.toLowerCase().includes(query);
+    const matchFilter =
+      currentFilter === 'all' ? true :
+      currentFilter === 'available' ? s.available && s.fuels.includes('petrol') :
+      currentFilter === '4star' ? s.rating >= 4.0 : true;
+    return matchSearch && matchFilter;
+  });
+
+  filtered = [...filtered].sort((a, b) => {
+    if (sort === 'rating') return b.rating - a.rating;
+    if (sort === 'price') {
+      if (!a.price) return 1;
+      if (!b.price) return -1;
+      return a.price - b.price;
+    }
+    return a.distance - b.distance;
+  });
+
+  document.getElementById('resultCount').textContent = filtered.length;
+  const grid = document.getElementById('stationGrid');
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="no-results"><div class="big">⛽</div>No stations match your search.<br>Try adjusting your filters.</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map((s, i) => `
+    <div class="card" style="animation-delay:${i * 0.05}s">
+      <div class="card-top">
+        <div class="station-brand">
+          <div class="brand-icon" style="background:${s.brandBg}; color:${s.brandColor}">${s.brandEmoji}</div>
+          <div>
+            <div class="station-name">${s.name}</div>
+            <div class="station-brand-label">${s.brand} · ${s.area}</div>
+          </div>
+        </div>
+        <div class="badge ${s.available ? 'available' : 'unavailable'}">
+          <span class="badge-dot"></span>
+          ${s.available ? 'Petrol In' : 'No Petrol'}
+        </div>
+      </div>
+
+      <div class="rating-row">
+        <div class="stars">${renderStars(s.rating)}</div>
+        <span class="rating-score">${s.rating.toFixed(1)}</span>
+        <span class="rating-count">(${s.reviewCount} reviews)</span>
+      </div>
+
+      <div class="rating-bar-wrap">
+        <div class="rating-bar-bg">
+          <div class="rating-bar-fill" style="width:${(s.rating/5)*100}%"></div>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-item">
+          <span class="info-icon">📍</span>
+          ${s.distance} km away
+        </div>
+        <div class="info-item">
+          <span class="info-icon">🕐</span>
+          ${s.hours}
+        </div>
+      </div>
+
+      <div class="fuel-chips">${renderFuelChips(s.fuels, s.available)}</div>
+
+      <div class="price-row">
+        <div>
+          <div class="price-label">Petrol Price</div>
+          <div class="price-value">
+            ${s.price ? `₦${s.price.toLocaleString()} <span class="price-unit">/litre</span>` : '<span style="color:#555;font-size:0.85rem">Unavailable</span>'}
+          </div>
+        </div>
+        <button class="nav-btn" onclick="alert('Opening navigation to ${s.name}…')">
+          🗺 Navigate
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+filterStations();
+</script>
+</body>
+</html>

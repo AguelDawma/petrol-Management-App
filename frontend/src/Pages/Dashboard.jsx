@@ -1,25 +1,31 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import styles from "./Dashboard.module.css";
+import StatusCircle from "../assets/statusCircle";
 
-export default function Dashboard() {
+export default function dashboard() {
     const [userLocation, setUserLocation] = useState(null);
     const [stations, setStations] = useState([]);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         // Get user's location
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
-                (position) => {
+                ({ coords: { latitude, longitude } }) => {
                     setUserLocation({
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
+                        lat: latitude,
+                        lng: longitude
                     });
                 },
                 (error) => {
                     console.error("Error getting location:", error);
-                }
+                },
+                { enableHighAccuracy: true }
             );
+        } else {
+            setError("Geolocation is not supported by this browser.");
+            return;
         }
 
         // Mock data for stations
@@ -49,6 +55,22 @@ export default function Dashboard() {
         setStations(mockStations);
     }, []);
 
+    async function sendLocation(coords) {
+        try {
+            const response = await fetch("/api/location", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(coords)
+            });
+            const data = await response.json();
+            console.log("Location sent successfully:", data);
+        } catch (error) {
+            console.error("Error sending location:", error);
+        }
+    }
+
     // Function to calculate distance using Haversine formula
     const calculateDistance = (lat1, lng1, lat2, lng2) => {
         const R = 6371; // Radius of the Earth in km
@@ -75,12 +97,12 @@ export default function Dashboard() {
         <main>
             <div className={styles["key-div"]}>
                 <ul>
-                    <li><img src="/hero-bg.jpg" alt="Fuel level" /><p>100L +</p></li>
-                    <li><img src="/hero-bg.jpg" alt="Fuel level" /><p>80L +</p></li>
-                    <li><img src="/hero-bg.jpg" alt="Fuel level" /><p>60L +</p></li>
-                    <li><img src="/hero-bg.jpg" alt="Fuel level" /><p>40L +</p></li>
-                    <li><img src="/hero-bg.jpg" alt="Fuel level" /><p>20L +</p></li>
-                    <li><img src="/hero-bg.jpg" alt="Fuel level" /><p>10L +</p></li>
+                    {[0, 20, 40, 60, 80, 100].map((value) => (
+                        <li key={value}>
+                            <StatusCircle percent={value} />
+                            <p>{value}L +</p>
+                        </li>
+                    ))}
                 </ul>
             </div>
             <div className={styles["stations-list"]}>

@@ -1,8 +1,11 @@
 import './home.css'
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+  const navigate = useNavigate();
   const handleViewStations = () => {
-    alert('Nearby stations feature coming soon!')
+    // redirect user to stations page
+    navigate('/stations');
   }
 
   return (

@@ -1,0 +1,114 @@
+:root {
+  --fuel-orange: #ff5a1f;
+  --fuel-dark: #0d0d0d;
+  --fuel-card: #161616;
+  --fuel-border: #2a2a2a;
+  --fuel-muted: #888;
+  --fuel-text: #f0ede8;
+  --fuel-sub: #999;
+}
+
+.stations-page {
+  min-height: 100vh;
+  background: #0a0a0f;
+  color: var(--fuel-text);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.stations-content {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 16px;
+  padding: 18px;
+  min-height: calc(100vh - 96px);
+}
+
+.stations-panel {
+  background: var(--fuel-card);
+  border: 1px solid var(--fuel-border);
+  border-radius: 16px;
+  padding: 16px;
+  max-height: calc(100vh - 130px);
+  overflow-y: auto;
+}
+
+.stations-map {
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: calc(100vh - 130px);
+  background: #0f121e;
+}
+
+.hero {
+  margin-bottom: 15px;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 90, 31, 0.12);
+  border: 1px solid rgba(255, 90, 31, 0.3);
+  color: var(--fuel-orange);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.5rem, 2.2vw, 2.4rem);
+  margin: 0 0 8px;
+}
+
+.hero p {
+  color: var(--fuel-sub);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.view-go-btn {
+  border: 1px solid var(--fuel-border);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--fuel-text);
+  padding: 0.55rem 0.9rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.view-go-btn:hover {
+  border-color: var(--fuel-orange);
+  background: rgba(255, 90, 31, 0.18);
+}
+
+.results-meta {
+  margin-bottom: 10px;
+  font-size: 0.88rem;
+  color: var(--fuel-sub);
+}
+
+@media (max-width: 1000px) {
+  .stations-content {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .stations-panel,
+  .stations-map {
+    max-height: auto;
+    min-height: 320px;
+  }
+}

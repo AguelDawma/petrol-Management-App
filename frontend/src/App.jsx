@@ -1,10 +1,15 @@
+import { useState, useCallback } from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Home from './Pages/home'
+import Stations from './Pages/stations'
 import './App.css'
-import Home from './home'
 
-function App() {
+export default function App() {
   return (
-    <Home />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/stations" element={<Stations />} />
+      <Route path="*" element={<Home />} />
+    </Routes>
   )
 }
-
-export default App

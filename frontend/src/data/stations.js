@@ -1,0 +1,111 @@
+export const stations = [
+  {
+    id: 1,
+    name: "NNPC Mega Station",
+    brand: "NNPC",
+    area: "Victoria Island",
+    address: "12 Adeola Odeku St, VI, Lagos",
+    lat: 6.4281,
+    lng: 3.4219,
+    rating: 4.7,
+    reviews: 214,
+    available: true,
+    price: 617,
+    hours: "24 hrs",
+    fuels: ["PMS", "AGO", "LPG"],
+    color: "#16A34A",
+  },
+  {
+    id: 2,
+    name: "TotalEnergies",
+    brand: "Total",
+    area: "Lekki Phase 1",
+    address: "45 Admiralty Way, Lekki, Lagos",
+    lat: 6.4350,
+    lng: 3.4750,
+    rating: 4.3,
+    reviews: 187,
+    available: true,
+    price: 620,
+    hours: "6am – 10pm",
+    fuels: ["PMS", "AGO"],
+    color: "#EA580C",
+  },
+  {
+    id: 3,
+    name: "Conoil Station",
+    brand: "Conoil",
+    area: "Ikeja GRA",
+    address: "7 Mobolaji Bank-Anthony Way, Ikeja",
+    lat: 6.5833,
+    lng: 3.3500,
+    rating: 3.8,
+    reviews: 93,
+    available: false,
+    price: null,
+    hours: "7am – 9pm",
+    fuels: ["AGO", "LPG"],
+    color: "#2563EB",
+  },
+  {
+    id: 4,
+    name: "Oando Express",
+    brand: "Oando",
+    area: "Surulere",
+    address: "22 Adeniran Ogunsanya St, Surulere",
+    lat: 6.4990,
+    lng: 3.3540,
+    rating: 4.1,
+    reviews: 156,
+    available: true,
+    price: 615,
+    hours: "24 hrs",
+    fuels: ["PMS", "AGO"],
+    color: "#DC2626",
+  },
+  {
+    id: 5,
+    name: "Ardova Filling Station",
+    brand: "Ardova",
+    area: "Maryland",
+    address: "15 Ikorodu Road, Maryland, Lagos",
+    lat: 6.5560,
+    lng: 3.3650,
+    rating: 4.5,
+    reviews: 112,
+    available: true,
+    price: 618,
+    hours: "6am – 11pm",
+    fuels: ["PMS", "AGO", "LPG"],
+    color: "#7C3AED",
+  },
+  {
+    id: 6,
+    name: "MRS Petroleum",
+    brand: "MRS",
+    area: "Gbagada",
+    address: "3 Hospital Road, Gbagada, Lagos",
+    lat: 6.5430,
+    lng: 3.3800,
+    rating: 3.5,
+    reviews: 47,
+    available: false,
+    price: null,
+    hours: "7am – 8pm",
+    fuels: ["PMS"],
+    color: "#D97706",
+  },
+]
+
+// Haversine distance in km
+export function getDistance(lat1, lng1, lat2, lng2) {
+  const R = 6371
+  const dLat = ((lat2 - lat1) * Math.PI) / 180
+  const dLng = ((lng2 - lng1) * Math.PI) / 180
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLng / 2) ** 2
+  return (R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))).toFixed(1)
+}
