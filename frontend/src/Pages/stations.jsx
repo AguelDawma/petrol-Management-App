@@ -1,7 +1,7 @@
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useEffect, useMemo, useCallback } from 'react'
 import Header from '../components/Header'
 import StationCard from '../components/StationCard'
-import { stations as rawStations, getDistance } from '../data/stations'
+import { getDistance } from '../data/stations'
 import './stations.css'
 
 // Default location: Lagos centre
@@ -20,21 +20,42 @@ export default function Stations() {
   const [selectedId, setSelectedId] = useState(null)
   const [query, setQuery] = useState('')
   const [filter, setFilter] = useState('all')
+  const [stations, setStations] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchStations = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/api/stations')
+        if (!response.ok) {
+          throw new Error('Unable to fetch station data')
+        }
+        const data = await response.json()
+        setStations(data)
+      } catch (error) {
+        console.error(error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchStations()
+  }, [])
 
   const handleLoadMap = useCallback(() => {
     // Map is not used in the full-page stations layout.
     alert('Map view is disabled for this layout.')
   }, [])
 
-  const stations = useMemo(() => rawStations.map(s => ({
+  const stationsWithDistance = useMemo(() => stations.map(s => ({
     ...s,
     distance: parseFloat(getDistance(userLat, userLng, s.lat, s.lng)),
-  })), [userLat, userLng])
+  })), [stations, userLat, userLng])
 
   const filtered = useMemo(() => {
     const q = query.toLowerCase().trim()
 
-    return stations
+    return stationsWithDistance
       .filter(s => {
         const matchQ = !q || s.name.toLowerCase().includes(q) || s.area.toLowerCase().includes(q)
         const matchF =
@@ -48,7 +69,7 @@ export default function Stations() {
         if (filter === 'top') return b.rating - a.rating
         return a.distance - b.distance
       })
-  }, [stations, query, filter])
+  }, [stationsWithDistance, query, filter])
 
   const handleLocate = useCallback(() => {
     if (!navigator.geolocation) {
@@ -112,11 +133,13 @@ export default function Stations() {
           </div>
 
           <div className="results-meta">
-            <strong>{filtered.length}</strong> station{filtered.length === 1 ? '' : 's'} found
+            {loading ? 'Loading stations…' : <><strong>{filtered.length}</strong> station{filtered.length === 1 ? '' : 's'} found</>}
           </div>
 
           <div className="station-list">
-            {filtered.length === 0 ? (
+            {loading ? (
+              <div className="empty-state">Loading station data from the database…</div>
+            ) : filtered.length === 0 ? (
               <div className="empty-state">No stations match your search.</div>
             ) : (
               filtered.map((station, i) => (
