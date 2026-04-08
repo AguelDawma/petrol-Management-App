@@ -96,6 +96,62 @@ app.get('/api/stations', (req, res) => {
     });
 });
 
+app.post('/api/stations/import-osm', async (req, res) => {
+    try {
+        const { bounds } = req.body;
+        if (!bounds) {
+            return res.status(400).json({ error: 'Bounds are required (format: "south,west,north,east")' });
+        }
+
+        // Fetch from OpenStreetMap
+        const query = `[out:json];node["amenity"="fuel"](${bounds});out;`;
+        const url = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`;
+
+        const osmResponse = await fetch(url);
+        const osmData = await osmResponse.json();
+
+        if (!osmData.elements || osmData.elements.length === 0) {
+            return res.json({ imported: 0, message: 'No stations found in bounds' });
+        }
+
+        let importedCount = 0;
+
+        // Insert each station into database
+        osmData.elements.forEach(station => {
+            db.run(`
+                INSERT OR IGNORE INTO FILLING_STATION 
+                (station_name, brand, area, address, latitude, longitude, operating_hours, is_active) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, 1)
+            `,
+            [
+                station.tags?.name || 'Unnamed Station',
+                station.tags?.brand || 'Unknown Brand',
+                station.tags?.locality || station.tags?.suburb || 'Unknown Area',
+                station.tags?.addr_street || 'No address',
+                station.lat,
+                station.lon,
+                station.tags?.opening_hours || '24 hrs'
+            ],
+            function(err) {
+                if (!err && this.changes > 0) importedCount++;
+            });
+        });
+
+        // Wait a brief moment for all inserts to complete
+        setTimeout(() => {
+            res.json({ 
+                imported: importedCount, 
+                total: osmData.elements.length,
+                message: `Imported ${importedCount} stations from OpenStreetMap`
+            });
+        }, 500);
+
+    } catch (error) {
+        console.error('Error importing OSM data:', error);
+        res.status(500).json({ error: 'Failed to import stations' });
+    }
+});
+
 app.post('/api/claude', async (req, res) => {
     try {
         const { prompt } = req.body;
