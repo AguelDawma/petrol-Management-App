@@ -80,4 +80,4 @@ INSERT IGNORE INTO FUEL_AVAILABILITY (availability_id, station_id, fuel_type_id,
     (9, 4, 2, 1, 618, 450),
     (10, 5, 1, 1, 625, 510),
     (11, 5, 3, 1, 452, 220),
-    (12, 6, 1, 0, 619, 0);
+    (12, 6, 1, 0, 619, 0);INSERT IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Thandy', 'thandy@gmail.com', NULL, '$2b$10$40RrIvaX/9gbjXYTjN2pQOeDOozr6FzDAKiaxoEf2NTiL75JLuQYy');
