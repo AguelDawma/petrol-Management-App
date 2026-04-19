@@ -3,100 +3,213 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 1.5rem;
-  height: 56px;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  height: 64px;
+  background: linear-gradient(145deg, #121828 0%, #191f38 52%, #0f1322 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   flex-shrink: 0;
   z-index: 200;
+  gap: 20px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex: 1;
 }
 
 .logo {
   font-family: 'Syne', sans-serif;
   font-weight: 800;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   letter-spacing: -0.04em;
   display: flex;
   align-items: center;
   gap: 8px;
+  cursor: pointer;
+  color: #f0ede8;
+  transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+  opacity: 0.8;
 }
 
 .flame {
-  width: 30px;
-  height: 30px;
-  background: var(--orange);
+  width: 32px;
+  height: 32px;
+  background: #ff5a1f;
   border-radius: 50% 50% 35% 35%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
+  font-size: 1rem;
   animation: flicker 2s ease-in-out infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+.nav {
+  display: flex;
+  gap: 0;
+  align-items: center;
+}
+
+.navLink {
+  padding: 8px 16px;
+  color: #999;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.navLink:hover {
+  color: #f0ede8;
+  background: rgba(255, 90, 31, 0.1);
+}
+
+.navLink.active {
+  color: #ff5a1f;
+  background: rgba(255, 90, 31, 0.15);
+  border-bottom: 2px solid #ff5a1f;
 }
 
 .right {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  flex-shrink: 0;
 }
 
 .userInfo {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-right: 10px;
   padding: 8px 12px;
-  background: var(--surface2);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 8px;
 }
 
 .welcome {
   font-size: 0.85rem;
-  color: var(--text);
+  color: #f0ede8;
   font-weight: 500;
+  white-space: nowrap;
 }
 
 .logoutBtn {
-  background: #dc3545;
+  background: #ff5a1f;
   color: white;
   border: none;
   border-radius: 6px;
-  padding: 4px 12px;
-  font-size: 0.75rem;
+  padding: 6px 14px;
+  font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: all 0.2s ease;
 }
 
 .logoutBtn:hover {
-  opacity: 0.85;
+  background: #ff6a30;
+  box-shadow: 0 3px 10px rgba(255, 90, 31, 0.2);
 }
 
-.apiWrap {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 6px 12px;
-  transition: border-color 0.2s;
+.locateBtn {
+  background: rgba(255, 90, 31, 0.15);
+  color: #ff5a1f;
+  border: 1px solid rgba(255, 90, 31, 0.3);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
-.apiWrap:focus-within {
-  border-color: var(--orange);
+.locateBtn:hover {
+  background: rgba(255, 90, 31, 0.25);
+  border-color: rgba(255, 90, 31, 0.5);
+  box-shadow: 0 3px 10px rgba(255, 90, 31, 0.15);
 }
 
-.keyIcon {
-  font-size: 0.8rem;
-  opacity: 0.6;
+@media (max-width: 1024px) {
+  .header {
+    padding: 0 1rem;
+    gap: 12px;
+  }
+
+  .nav {
+    gap: 4px;
+  }
+
+  .navLink {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+
+  .left {
+    gap: 20px;
+  }
 }
 
-.apiInput {
-  background: none;
-  border: none;
-  outline: none;
-  color: var(--text);
-  font-size: 0.78rem;
-  width: 220px;
+@media (max-width: 768px) {
+  .header {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 12px 1rem;
+  }
+
+  .left {
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .nav {
+    flex: 1;
+    justify-content: flex-start;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  .navLink {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .right {
+    width: 100%;
+    gap: 8px;
+    justify-content: space-between;
+  }
+
+  .userInfo {
+    gap: 8px;
+    padding: 6px 10px;
+  }
+
+  .welcome {
+    font-size: 0.8rem;
+  }
+
+  .logoutBtn {
+    padding: 4px 10px;
+    font-size: 0.75rem;
+  }
+
+  .locateBtn {
+    padding: 4px 10px;
+    font-size: 0.85rem;
+  }
 }
 
 .apiInput::placeholder {
