@@ -126,21 +126,30 @@ PetrolPeek/
    cd PetrolPeek
    ```
 
-2. **Backend Setup**:
+2. **Install dependencies**:
    ```bash
-   cd backend
    npm install
+   ```
+
+3. **Start both servers**:
+   ```bash
    npm start
    ```
-   Server runs on `http://localhost:3000`
+   This will start both backend (http://localhost:3000) and frontend (http://localhost:5173) servers simultaneously.
 
-3. **Frontend Setup** (in new terminal):
-   ```bash
-   cd frontend
-   npm install
-   npm run dev
-   ```
-   App opens on `http://localhost:5173`
+**Alternative: Start servers separately**
+
+- **Backend Setup**:
+  ```bash
+  npm run backend
+  ```
+  Server runs on `http://localhost:3000`
+
+- **Frontend Setup** (in new terminal):
+  ```bash
+  npm run frontend
+  ```
+  App opens on `http://localhost:5173`
 
 ### Default Test Credentials
 

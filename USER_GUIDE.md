@@ -18,7 +18,29 @@
 - **Database**: SQLite3 (included with backend)
 - **Browser**: Chrome, Firefox, Safari, or Edge (latest versions)
 
-### Backend Setup
+### Quick Start (Recommended)
+
+1. **Clone and navigate to project**:
+   ```bash
+   git clone <repository-url>
+   cd PetrolPeek
+   ```
+
+2. **Install all dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Start both servers**:
+   ```bash
+   npm start
+   ```
+   
+   This starts both backend (http://localhost:3000) and frontend (http://localhost:5173) simultaneously.
+
+### Manual Setup (Alternative)
+
+#### Backend Setup
 
 1. **Navigate to backend directory**:
    ```bash
@@ -44,7 +66,7 @@
    
    The server will start on `http://localhost:3000`
 
-### Frontend Setup
+#### Frontend Setup
 
 1. **Navigate to frontend directory**:
    ```bash

@@ -72,9 +72,23 @@ export const AuthProvider = ({ children }) => {
 
       return { success: true };
     } catch (error) {
+      console.error('Registration error:', error);
+      let errorMessage = 'Registration failed';
+      
+      if (error.response) {
+        // Server responded with error status
+        errorMessage = error.response.data?.error || 'Registration failed';
+      } else if (error.request) {
+        // Network error
+        errorMessage = 'Unable to connect to server. Please check if the backend is running.';
+      } else {
+        // Other error
+        errorMessage = 'An unexpected error occurred during registration.';
+      }
+      
       return {
         success: false,
-        error: error.response?.data?.error || 'Registration failed'
+        error: errorMessage
       };
     }
   };
