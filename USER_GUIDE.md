@@ -143,7 +143,7 @@ The database automatically initializes when the backend starts. It:
    - Available fuel types (PMS, AGO, LPG)
    - Current fuel prices
    - Operating hours
-   - Distance from your location (calculated from default Lagos center or your location)
+   - Distance from your location (calculated from default Maseru center or your location)
 
 #### Searching Stations
 1. **Enter station name or area** in the search box
@@ -162,7 +162,7 @@ Click on filter buttons to narrow your search:
 1. **Click "Use Device Location"** button
 2. **Allow location access** when prompted by your browser
 3. **Distances will update** based on your actual location
-4. **If location is denied**, the system uses Lagos city center as default
+4. **If location is denied**, the system uses Maseru city center as default
 
 ### 3. Viewing Station Details
 
@@ -382,7 +382,7 @@ Click on filter buttons to narrow your search:
 - **Solution**: Check browser permissions for location access
 - **Solution**: Ensure location services enabled on device
 - **Solution**: Try refreshing the page
-- **Default**: System uses Lagos city center if location unavailable
+- **Default**: System uses Maseru city center if location unavailable
 
 ### Can't Submit Review
 **Problem**: Review submission fails

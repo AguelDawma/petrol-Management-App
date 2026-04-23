@@ -145,7 +145,7 @@ PetrolPeek provides:
 1. **Geographic Data**:
    - Latitude: Must be between -90 and 90
    - Longitude: Must be between -180 and 180
-   - Coordinates must be within Nigeria bounds for this implementation
+   - Coordinates must be within Lesotho bounds for this implementation
 
 2. **Contact Information**:
    - Phone numbers must be in valid format (if provided)

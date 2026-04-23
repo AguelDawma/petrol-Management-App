@@ -96,16 +96,16 @@ INSERT OR IGNORE INTO FUEL_TYPE (fuel_type_id, fuel_name, fuel_code, fuel_price)
     (3, 'LPG', 'LPG', 450);
 
 INSERT OR IGNORE INTO FILLING_STATION (station_id, station_name, brand, area, address, latitude, longitude, rating, reviews, available, maps_url, operating_hours, is_active, phone_number, manager_name) VALUES
-    (1, 'NNPC Mega Station', 'NNPC', 'Victoria Island', '12 Adeola Odeku St, VI, Lagos', 6.4281, 3.4219, 4.7, 214, 1, 'https://www.google.com/maps/place/?q=place_id:ChIJ7aVxnOTH...','24 hrs', 1, '+234-800-123-4567', 'John Smith'),
-    (2, 'TotalEnergies', 'Total', 'Lekki Phase 1', '45 Admiralty Way, Lekki, Lagos', 6.4350, 3.4750, 4.3, 187, 1, 'https://www.google.com/maps/place/?q=place_id:ChIJp6yY7pqx...', '6am – 10pm', 1, '+234-801-234-5678', 'Sarah Johnson'),
-    (3, 'Conoil Station', 'Conoil', 'Ikeja GRA', '7 Mobolaji Bank-Anthony Way, Ikeja', 6.5833, 3.3500, 3.8, 93, 0, '', '7am – 9pm', 1, '+234-802-345-6789', 'Michael Brown'),
-    (4, 'Oando Express', 'Oando', 'Surulere', '22 Adeniran Ogunsanya St, Surulere', 6.4990, 3.3540, 4.1, 156, 1, 'https://www.google.com/maps/place/?q=place_id:ChIJk5gVRnwJ...', '24 hrs', 1, '+234-803-456-7890', 'David Wilson'),
-    (5, 'Ardova Filling Station', 'Ardova', 'Maryland', '15 Ikorodu Road, Maryland, Lagos', 6.5200, 3.3950, 4.5, 112, 1, '', '6am – 11pm', 1, '+234-804-567-8901', 'Patricia Moore'),
-    (6, 'MRS Petroleum', 'MRS', 'Gbagada', '3 Hospital Road, Gbagada, Lagos', 6.5430, 3.3800, 3.5, 47, 0, '', '7am – 8pm', 1, '+234-805-678-9012', 'Samuel Taylor'),
-    (7, 'Shell Service Station', 'Shell', 'Ikoyi', '88 Awolowo Road, Ikoyi, Lagos', 6.4620, 3.4080, 4.6, 198, 1, '', '24 hrs', 1, '+234-806-789-0123', 'Jennifer Davis'),
-    (8, 'Petrocam Station', 'Petrocam', 'Bariga', '34 Ikorodu Road, Bariga, Lagos', 6.5180, 3.3770, 3.9, 76, 1, '', '6am – 10pm', 1, '+234-807-890-1234', 'Robert Anderson'),
-    (9, 'NNPC Mega Station II', 'NNPC', 'Ajah', '200 Lekki-Epe Expressway, Ajah', 6.3890, 3.5450, 4.4, 165, 1, '', '24 hrs', 1, '+234-808-901-2345', 'Maria Garcia'),
-    (10, 'Fuel Express', 'Fuel Express', 'Yaba', '50 Sabo Road, Yaba, Lagos', 6.5080, 3.3580, 3.7, 88, 0, '', '6am – 9pm', 1, '+234-809-012-3456', 'Thomas White');
+    (1, 'Shell Maseru', 'Shell', 'Kingsway', '123 Kingsway Road, Maseru', -29.6109, 27.5554, 4.7, 214, 1, 'https://www.google.com/maps/place/?q=place_id:ChIJ7aVxnOTH...','24 hrs', 1, '+266-5123-4567', 'John Smith'),
+    (2, 'BP Maseru', 'BP', 'Main North Road', '45 Main North Road, Maseru', -29.6120, 27.5560, 4.3, 187, 1, 'https://www.google.com/maps/place/?q=place_id:ChIJp6yY7pqx...', '6am – 10pm', 1, '+266-5234-5678', 'Sarah Johnson'),
+    (3, 'Nyuma Filling Station', 'Nyuma', 'Ha Thetsane', '120 Ha Thetsane Road, Maseru', -29.6105, 27.5575, 3.8, 93, 0, '', '7am – 9pm', 1, '+266-5302-3456', 'Michael Brown'),
+    (4, 'Lesedi Petrol Station', 'Lesedi', 'Qeme', '22 Qeme Main Road, Maseru', -29.6128, 27.5545, 4.1, 156, 1, 'https://www.google.com/maps/place/?q=place_id:ChIJk5gVRnwJ...', '24 hrs', 1, '+266-5403-6789', 'David Wilson'),
+    (5, 'Total Maseru', 'Total', 'Pioneer Road', '15 Pioneer Road, Maseru', -29.6100, 27.5580, 4.5, 112, 1, '', '6am – 11pm', 1, '+266-5567-8901', 'Patricia Moore'),
+    (6, 'Engen Maseru', 'Engen', 'Moshoeshoe Road', '3 Moshoeshoe Road, Maseru', -29.6130, 27.5540, 3.5, 47, 0, '', '7am – 8pm', 1, '+266-5678-9012', 'Samuel Taylor'),
+    (7, 'Caltex Maseru', 'Caltex', 'Lerotholi Road', '88 Lerotholi Road, Maseru', -29.6115, 27.5570, 4.6, 198, 1, '', '24 hrs', 1, '+266-5789-0123', 'Jennifer Davis'),
+    (8, 'Tshepang Filling', 'Tshepang', 'Hoohlo Road', '34 Hoohlo Road, Maseru', -29.6125, 27.5550, 3.9, 76, 1, '', '6am – 10pm', 1, '+266-5890-1234', 'Robert Anderson'),
+    (9, 'Thabiso Energy', 'Thabiso', 'Lithoteng', '200 Lithoteng Road, Maseru', -29.6110, 27.5565, 4.4, 165, 1, '', '24 hrs', 1, '+266-5809-1234', 'Maria Garcia'),
+    (10, 'Lesotho Petrol', 'Lesotho Petrol', 'Industrial Area', '50 Industrial Area Road, Maseru', -29.6135, 27.5535, 3.7, 88, 0, '', '6am – 9pm', 1, '+266-5012-3456', 'Thomas White');
 
 INSERT OR IGNORE INTO FUEL_AVAILABILITY (availability_id, station_id, fuel_type_id, is_available, price_per_litre, quantity_in_stock) VALUES
     (1, 1, 1, 1, 617, 1200),
