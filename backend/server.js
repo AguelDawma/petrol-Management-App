@@ -260,8 +260,8 @@ app.get('/api/stations', (req, res) => {
                     }
 
                     const fuels = fuelRows.map(r => r.fuel_code);
-                    const pms = fuelRows.find(r => r.fuel_code === 'PMS');
-                    const price = pms?.price_per_litre ?? fuelRows[0]?.price_per_litre ?? null;
+                    const ULD95 = fuelRows.find(r => r.fuel_code === 'ULD95');
+                    const price = ULD95?.price_per_litre ?? fuelRows[0]?.price_per_litre ?? null;
 
                     resolve({
                         id: station.station_id,

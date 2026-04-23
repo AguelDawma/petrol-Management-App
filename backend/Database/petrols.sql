@@ -56,9 +56,9 @@ CREATE TABLE IF NOT EXISTS `USER` (
 
 -- INSERT DATA
 INSERT IGNORE INTO FUEL_TYPE (fuel_type_id, fuel_name, fuel_code, fuel_price) VALUES
-    (1, 'Premium Motor Spirit', 'PMS', 617),
-    (2, 'Diesel', 'AGO', 620),
-    (3, 'LPG', 'LPG', 450);
+    (1, 'Premium Motor Spirit', 'ULD95', 617),
+    (2, 'Diesel', '50PPM', 620),
+    (3, 'ULD93', 'ULD93', 450);
 
 INSERT IGNORE INTO FILLING_STATION (station_id, station_name, brand, area, address, latitude, longitude, rating, reviews, available, maps_url, operating_hours, is_active) VALUES
     (1, 'Shell Maseru', 'Shell', 'Kingsway', '123 Kingsway Road, Maseru', -29.6109, 27.5554, 4.7, 214, 1, 'https://www.google.com/maps/place/?q=place_id:ChIJ7aVxnOTH...','24 hrs', '24 hrs', 1),

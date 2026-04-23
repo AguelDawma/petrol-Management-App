@@ -91,21 +91,38 @@ CREATE INDEX IF NOT EXISTS idx_transaction_user ON TRANSACTION_LOG(user_id);
 CREATE INDEX IF NOT EXISTS idx_transaction_type ON TRANSACTION_LOG(transaction_type);
 
 INSERT OR IGNORE INTO FUEL_TYPE (fuel_type_id, fuel_name, fuel_code, fuel_price) VALUES
-    (1, 'Premium Motor Spirit', 'PMS', 617),
-    (2, 'Diesel', 'AGO', 620),
-    (3, 'LPG', 'LPG', 450);
+    (1, 'Unleaded Petrol 95', 'ULD95', 23.30),
+    (2, 'Diesel', '50PPM', 30.50),
+    (3, 'Unleaded Petrol 93', 'ULD93', 22.50);
 
-INSERT OR IGNORE INTO FILLING_STATION (station_id, station_name, brand, area, address, latitude, longitude, rating, reviews, available, maps_url, operating_hours, is_active, phone_number, manager_name) VALUES
-    (1, 'Shell Maseru', 'Shell', 'Kingsway', '123 Kingsway Road, Maseru', -29.6109, 27.5554, 4.7, 214, 1, 'https://www.google.com/maps/place/?q=place_id:ChIJ7aVxnOTH...','24 hrs', 1, '+266-5123-4567', 'John Smith'),
-    (2, 'BP Maseru', 'BP', 'Main North Road', '45 Main North Road, Maseru', -29.6120, 27.5560, 4.3, 187, 1, 'https://www.google.com/maps/place/?q=place_id:ChIJp6yY7pqx...', '6am – 10pm', 1, '+266-5234-5678', 'Sarah Johnson'),
-    (3, 'Nyuma Filling Station', 'Nyuma', 'Ha Thetsane', '120 Ha Thetsane Road, Maseru', -29.6105, 27.5575, 3.8, 93, 0, '', '7am – 9pm', 1, '+266-5302-3456', 'Michael Brown'),
-    (4, 'Lesedi Petrol Station', 'Lesedi', 'Qeme', '22 Qeme Main Road, Maseru', -29.6128, 27.5545, 4.1, 156, 1, 'https://www.google.com/maps/place/?q=place_id:ChIJk5gVRnwJ...', '24 hrs', 1, '+266-5403-6789', 'David Wilson'),
-    (5, 'Total Maseru', 'Total', 'Pioneer Road', '15 Pioneer Road, Maseru', -29.6100, 27.5580, 4.5, 112, 1, '', '6am – 11pm', 1, '+266-5567-8901', 'Patricia Moore'),
-    (6, 'Engen Maseru', 'Engen', 'Moshoeshoe Road', '3 Moshoeshoe Road, Maseru', -29.6130, 27.5540, 3.5, 47, 0, '', '7am – 8pm', 1, '+266-5678-9012', 'Samuel Taylor'),
-    (7, 'Caltex Maseru', 'Caltex', 'Lerotholi Road', '88 Lerotholi Road, Maseru', -29.6115, 27.5570, 4.6, 198, 1, '', '24 hrs', 1, '+266-5789-0123', 'Jennifer Davis'),
-    (8, 'Tshepang Filling', 'Tshepang', 'Hoohlo Road', '34 Hoohlo Road, Maseru', -29.6125, 27.5550, 3.9, 76, 1, '', '6am – 10pm', 1, '+266-5890-1234', 'Robert Anderson'),
-    (9, 'Thabiso Energy', 'Thabiso', 'Lithoteng', '200 Lithoteng Road, Maseru', -29.6110, 27.5565, 4.4, 165, 1, '', '24 hrs', 1, '+266-5809-1234', 'Maria Garcia'),
-    (10, 'Lesotho Petrol', 'Lesotho Petrol', 'Industrial Area', '50 Industrial Area Road, Maseru', -29.6135, 27.5535, 3.7, 88, 0, '', '6am – 9pm', 1, '+266-5012-3456', 'Thomas White');
+INSERT OR IGNORE INTO FILLING_STATION (station_name, brand, area, address, latitude, longitude, rating, reviews, available, maps_url, operating_hours, is_active, phone_number, manager_name) VALUES
+    ('Unnamed Station', 'Unnamed Station', 'Unknown Area', 'No address', -29.29349935, 27.518469925, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.29349935&mlon=27.518469925&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Puma', 'Puma', 'Maseru', 'Maseru', -29.310610542857145, 27.488018314285714, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.310610542857145&mlon=27.488018314285714&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Total', 'Total', 'Corner Upper Thamae, Maseru', 'Corner Upper Thamae Rd & Main South 1', -29.3340542, 27.50905980909091, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3340542&mlon=27.50905980909091&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('mother and sons filling station', 'mother and sons filling station', 'Mothers and Sons', 'No address', -29.40273328, 27.565350619999997, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.40273328&mlon=27.565350619999997&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Unnamed Station', 'Unnamed Station', 'Unknown Area', 'Main South', -29.3355330125, 27.5094929, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3355330125&mlon=27.5094929&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Unnamed Station', 'Unnamed Station', 'Unknown Area', 'No address', -29.31683936, 27.483490940000003, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.31683936&mlon=27.483490940000003&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Sekautu Tholo Filling Station', 'Tholo', 'Tholo Roma Ha Sekautu', 'No address', -29.44738822, 27.715465719999997, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.44738822&mlon=27.715465719999997&zoom=17', '08:00-21:00', 1, NULL, NULL),
+    ('Puma', 'Puma', 'Unknown Area', 'Thabong Link', -29.3150731, 27.5106857, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3150731&mlon=27.5106857&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Puma', 'Puma', 'Unknown Area', 'Principal Highway', -29.3687621, 27.5377439, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3687621&mlon=27.5377439&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Ha Mots''oeneng Filling station', 'Ha Mots''oeneng Filling station', 'Unknown Area', 'No address', -29.3475657, 27.5184829, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3475657&mlon=27.5184829&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Lake Site Filling Station', 'Lake Site Filling Station', 'Unknown Area', 'No address', -29.3127952, 27.5100366, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3127952&mlon=27.5100366&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Mochaochele', 'Shell', 'Unknown Area', 'No address', -29.4113716, 27.6194745, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.4113716&mlon=27.6194745&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Pioneer Filling Station', 'Engen', 'Pioneer, Maseru', 'Pioneer Road', -29.3147122, 27.4794926, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3147122&mlon=27.4794926&zoom=17', 'Mo-Su,PH 00:00+', 1, NULL, NULL),
+    ('Unnamed Station', 'Unnamed Station', 'Unknown Area', 'No address', -29.4196271, 27.561662, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.4196271&mlon=27.561662&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Sparrows', 'Puma', 'Unknown Area', 'Dove Road', -29.3157524, 27.4799403, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3157524&mlon=27.4799403&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Engen', 'Engen', 'Unknown Area', 'No address', -29.3373962, 27.5107428, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3373962&mlon=27.5107428&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('PUMA', 'Puma', 'Unknown Area', 'No address', -29.6228558, 27.4963254, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.6228558&mlon=27.4963254&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Puma', 'Puma', 'Unknown Area', 'No address', -29.4028343, 27.564891, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.4028343&mlon=27.564891&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Puma', 'Puma', 'Unknown Area', 'No address', -29.319583, 27.4960617, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.319583&mlon=27.4960617&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Total', 'Total', 'Unknown Area', 'No address', -29.4024404, 27.7952082, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.4024404&mlon=27.7952082&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Puma', 'Puma', 'Unknown Area', 'Pope John Paul II Road', -29.3323966, 27.4856952, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3323966&mlon=27.4856952&zoom=17', '24/7', 1, NULL, NULL),
+    ('Masianokeng Filling Station', 'Puma', 'Masianokeng', 'Principal Highway', -29.4044703, 27.5618515, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.4044703&mlon=27.5618515&zoom=17', '24/7', 1, NULL, NULL),
+    ('Unnamed Station', 'Unnamed Station', 'Unknown Area', 'No address', -29.3610894, 27.528495, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3610894&mlon=27.528495&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Puma', 'Puma', 'Unknown Area', 'Main North 1', -29.3062787, 27.5146181, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3062787&mlon=27.5146181&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Puma', 'Puma', 'Unknown Area', 'No address', -29.3400753, 27.513741, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3400753&mlon=27.513741&zoom=17', '24/7', 1, NULL, NULL),
+    ('Roma Filling Station', 'Roma Filling Station', 'Roma', 'Roma', -29.4518024, 27.720777, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.4518024&mlon=27.720777&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Total', 'TotalEnergies', 'Unknown Area', 'Main North 1', -29.2882647, 27.523698, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.2882647&mlon=27.523698&zoom=17', '24 hrs', 1, NULL, NULL);
 
 INSERT OR IGNORE INTO FUEL_AVAILABILITY (availability_id, station_id, fuel_type_id, is_available, price_per_litre, quantity_in_stock) VALUES
     (1, 1, 1, 1, 617, 1200),
@@ -133,13 +150,13 @@ INSERT OR IGNORE INTO FUEL_AVAILABILITY (availability_id, station_id, fuel_type_
     (23, 10, 2, 1, 622, 300);
 
 INSERT OR IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`, `role`) VALUES 
-    ('Thandy Mthembu', 'thandy@gmail.com', '+256-700-123456', '$2b$10$40RrIvaX/9gbjXYTjN2pQOeDOozr6FzDAKiaxoEf2NTiL75JLuQYy', 'customer'),
+    ('Thandy Letseka', 'thandy@gmail.com', '+26657663456', '$2b$10$40RrIvaX/9gbjXYTjN2pQOeDOozr6FzDAKiaxoEf2NTiL75JLuQYy', 'customer'),
     ('Test User', 'test_automation@example.com', '123', '$2b$10$iwZYNZP7i1OSq.whWKTPr.bplLfzb9dsbeKhE1nrZgl9OoVQw3kNO', 'customer'),
-    ('Thapelo Mthembu', 'thapelo@gmail.com', '+256-700-654321', '$2b$10$vMK/tIA78GetPrqZ0iHtqO8nauBo4TnhTtSg1hHfWxnEUYDzNV2Bi', 'customer'),
-    ('Admin User', 'admin@petrolpeek.com', '+256-701-111111', '$2b$10$Admin.Hash.Here.For.Testing.Only.Secure.Password.Hash', 'admin'),
-    ('James Kimani', 'james.kimani@gmail.com', '+254-722-333444', '$2b$10$9KU/4dXFYjPQkLmNvW2zNuAaB1C2D3E4F5G6H7I8J9K0L1M2N3O4', 'customer'),
-    ('Mary Okonkwo', 'mary.okonkwo@gmail.com', '+234-701-555666', '$2b$10$PQ5R6S7T8U9V0W1X2Y3Z4A5B6C7D8E9F0G1H2I3J4K5L6M7N8O9P', 'customer'),
-    ('Peter Mwangi', 'peter.mwangi@gmail.com', '+254-723-777888', '$2b$10$Q0R1S2T3U4V5W6X7Y8Z9A0B1C2D3E4F5G6H7I8J9K0L1M2N3O4P5', 'customer');
+    ('Thapelo Mrelaxo', 'thapelo@gmail.com', '+2665678901', '$2b$10$vMK/tIA78GetPrqZ0iHtqO8nauBo4TnhTtSg1hHfWxnEUYDzNV2Bi', 'customer'),
+    ('Admin User', 'admin@petrolpeek.com', '5711111', '$2b$10$Admin.Hash.Here.For.Testing.Only.Secure.Password.Hash', 'admin'),
+    ('James Kimani', 'james.kimani@gmail.com', '5670094', '$2b$10$9KU/4dXFYjPQkLmNvW2zNuAaB1C2D3E4F5G6H7I8J9K0L1M2N3O4', 'customer'),
+    ('Mary Lekhooa', 'mary.lekhooa@gmail.com', '53456789', '$2b$10$PQ5R6S7T8U9V0W1X2Y3Z4A5B6C7D8E9F0G1H2I3J4K5L6M7N8O9P', 'customer'),
+    ('Peter WaLeSystems', 'peter.walesystems@gmail.com', '567896445', '$2b$10$Q0R1S2T3U4V5W6X7Y8Z9A0B1C2D3E4F5G6H7I8J9K0L1M2N3O4P5', 'customer');
 
 INSERT OR IGNORE INTO STATION_REVIEW (review_id, station_id, user_id, rating, review_text) VALUES
     (1, 1, 1, 5, 'Excellent service and very clean facilities'),
@@ -156,13 +173,13 @@ INSERT OR IGNORE INTO STATION_REVIEW (review_id, station_id, user_id, rating, re
     (12, 5, 7, 5, 'Best customer service I have experienced');
 
 INSERT OR IGNORE INTO TRANSACTION_LOG (transaction_id, user_id, station_id, transaction_type, transaction_details, status) VALUES
-    (1, 1, 1, 'FUEL_PURCHASE', 'Purchased 50L of PMS at 617/L', 'completed'),
-    (2, 2, 2, 'FUEL_PURCHASE', 'Purchased 40L of AGO at 621/L', 'completed'),
-    (3, 3, 4, 'FUEL_PURCHASE', 'Purchased 35L of PMS at 615/L', 'completed'),
-    (4, 4, 5, 'FUEL_PURCHASE', 'Purchased 60L of LPG at 452/L', 'completed'),
-    (5, 5, 1, 'FUEL_PURCHASE', 'Purchased 45L of AGO at 620/L', 'completed'),
-    (6, 6, 7, 'FUEL_PURCHASE', 'Purchased 55L of PMS at 616/L', 'completed'),
-    (7, 7, 8, 'FUEL_PURCHASE', 'Purchased 50L of AGO at 621/L', 'completed'),
+    (1, 1, 1, 'FUEL_PURCHASE', 'Purchased 50L of ULD95', 'completed'),
+    (2, 2, 2, 'FUEL_PURCHASE', 'Purchased 40L of 50PPM', 'completed'),
+    (3, 3, 4, 'FUEL_PURCHASE', 'Purchased 35L of ULD95', 'completed'),
+    (4, 4, 5, 'FUEL_PURCHASE', 'Purchased 60L of ULD93', 'completed'),
+    (5, 5, 1, 'FUEL_PURCHASE', 'Purchased 45L of 50PPM', 'completed'),
+    (6, 6, 7, 'FUEL_PURCHASE', 'Purchased 55L of ULD95', 'completed'),
+    (7, 7, 8, 'FUEL_PURCHASE', 'Purchased 50L of 50PPM', 'completed'),
     (8, 1, 9, 'REVIEW_POSTED', 'Posted 5-star review', 'completed'),
     (9, 2, 2, 'REVIEW_POSTED', 'Posted 4-star review', 'completed'),
     (10, 3, 3, 'STATION_VIEWED', 'Viewed station details', 'completed'),

@@ -28,6 +28,7 @@ export default function Stations() {
   const [loading, setLoading] = useState(true)
   const mapRef = useRef(null)
   const routingControlRef = useRef(null)
+  const watchIdRef = useRef(null)
 
   useEffect(() => {
     const fetchStations = async () => {
@@ -48,6 +49,35 @@ export default function Stations() {
     fetchStations()
   }, [])
 
+  // Watch user location continuously
+  useEffect(() => {
+    if (!navigator.geolocation) return
+
+    const watchId = navigator.geolocation.watchPosition(
+      pos => {
+        setUserLat(pos.coords.latitude)
+        setUserLng(pos.coords.longitude)
+      },
+      err => {
+        console.error('Geolocation error:', err)
+        // Keep default location if watching fails
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 30000
+      }
+    )
+
+    watchIdRef.current = watchId
+
+    return () => {
+      if (watchIdRef.current) {
+        navigator.geolocation.clearWatch(watchIdRef.current)
+      }
+    }
+  }, [])
+
   // Initialize map
   useEffect(() => {
     if (mapRef.current) return // Map already initialized
@@ -62,7 +92,7 @@ export default function Stations() {
     // Add user location marker
     L.circleMarker([userLat, userLng], {
       radius: 8,
-      fillColor: '#ff5a1f',
+      fillColor: '#1f6aff',
       color: '#fff',
       weight: 2,
       opacity: 1,
@@ -84,7 +114,7 @@ export default function Stations() {
       })
       L.circleMarker([userLat, userLng], {
         radius: 8,
-        fillColor: '#ff5a1f',
+        fillColor: '#1f66ff',
         color: '#fff',
         weight: 2,
         opacity: 1,
@@ -123,7 +153,7 @@ export default function Stations() {
       fitSelectedRoutes: true,
       showAlternatives: false,
       lineOptions: {
-        styles: [{ color: '#ff5a1f', opacity: 0.8, weight: 5 }]
+        styles: [{ color: '#06c619', opacity: 0.8, weight: 5 }]
       }
     }).addTo(mapRef.current)
 

@@ -236,7 +236,7 @@ Response 200:
     "reviews": 214,
     "available": true,
     "hours": "24 hrs",
-    "fuels": ["PMS", "AGO", "LPG"],
+    "fuels": ["ULD95", "50PPM", "ULD93"],
     "price": 617
   },
   ...
@@ -254,7 +254,7 @@ Response 200:
   ...
   "fuels": [
     {
-      "fuel_code": "PMS",
+      "fuel_code": "ULD95",
       "is_available": true,
       "price_per_litre": 617,
       "quantity_in_stock": 1200
@@ -354,7 +354,7 @@ Response 200:
   "fuel_types": 3,
   "data": [
     {
-      "fuel_code": "PMS",
+      "fuel_code": "ULD95",
       "fuel_name": "Premium Motor Spirit",
       "total_stations_offering": 10,
       "stations_with_stock": 8,

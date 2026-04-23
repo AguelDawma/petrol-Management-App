@@ -21,9 +21,9 @@ function FuelChip({ label, type }) {
 
 export default function StationCard({ station, selected, index, onSelect, onNavigate }) {
   const fuelMap = {
-    PMS: 'petrol',
-    AGO: 'diesel',
-    LPG: 'lpg',
+    ULD95: 'petrol',
+    PPM50: 'diesel',
+    ULD93: 'ULD93',
   }
 
   return (
@@ -61,11 +61,11 @@ export default function StationCard({ station, selected, index, onSelect, onNavi
 
       {/* Fuel chips */}
       <div className={styles.chips}>
-        {['PMS', 'AGO', 'LPG'].map(f => (
+        {['ULD95', 'PPM50', 'ULD93'].map(f => (
           <FuelChip
             key={f}
             label={f}
-            type={station.fuels.includes(f) && (f !== 'PMS' || station.available) ? fuelMap[f] : 'none'}
+            type={station.fuels.includes(f) && (f !== 'ULD95' || station.available) ? fuelMap[f] : 'none'}
           />
         ))}
       </div>
@@ -76,7 +76,7 @@ export default function StationCard({ station, selected, index, onSelect, onNavi
           <span className={styles.metaItem}>📍 {station.distance} km</span>
           <span className={styles.metaItem}>🕐 {station.hours}</span>
           {station.price
-            ? <span className={styles.price}>₦{station.price}/L</span>
+            ? <span className={styles.price}>M{station.price}/L</span>
             : <span className={styles.noPrice}>—</span>
           }
         </div>

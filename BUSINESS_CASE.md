@@ -37,9 +37,9 @@ PetrolPeek provides:
   - A station is identified by brand and location
 
 #### 2. FUEL_TYPE (Reference Entity)
-- **Definition**: Types of fuel available (PMS, AGO, LPG)
+- **Definition**: Types of fuel available (ULD95, 50PPM, ULD93)
 - **Business Rules**:
-  - Each fuel type has a unique fuel code (PMS, AGO, LPG)
+  - Each fuel type has a unique fuel code (ULD95, 50PPM, ULD93)
   - Fuel codes are standardized across all stations
   - Price is tracked per unit (liter)
   - Fuel type cannot be deleted if associated with fuel availability records (referential integrity)

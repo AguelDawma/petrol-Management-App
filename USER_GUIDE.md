@@ -89,7 +89,7 @@
 
 The database automatically initializes when the backend starts. It:
 - Creates all necessary tables
-- Inserts default fuel types (PMS, AGO, LPG)
+- Inserts default fuel types (ULD95, 50PPM, ULD93)
 - Populates initial test data
 - Creates necessary indexes for performance
 
@@ -140,7 +140,7 @@ The database automatically initializes when the backend starts. It:
    - Location and address
    - Customer rating (out of 5 stars)
    - Number of reviews
-   - Available fuel types (PMS, AGO, LPG)
+   - Available fuel types (ULD95, 50PPM, ULD93)
    - Current fuel prices
    - Operating hours
    - Distance from your location (calculated from default Maseru center or your location)
@@ -153,7 +153,7 @@ The database automatically initializes when the backend starts. It:
 #### Filtering Stations
 Click on filter buttons to narrow your search:
 - **All**: Shows all stations
-- **Petrol In**: Shows only stations with PMS (Petrol) in stock
+- **Petrol In**: Shows only stations with ULD95 (Petrol) in stock
 - **Top Rated**: Shows stations with rating ≥ 4.2 stars
 - **Nearest**: Sorts stations by distance from you
 
@@ -314,7 +314,7 @@ Click on filter buttons to narrow your search:
 
 #### 2. Fuel Availability & Pricing Report ⛽
 **What it shows:**
-- All fuel types (PMS, AGO, LPG)
+- All fuel types (ULD95, 50PPM, ULD93)
 - How many stations offer each fuel
 - Price comparison (minimum, maximum, average)
 - Total stock across all stations
