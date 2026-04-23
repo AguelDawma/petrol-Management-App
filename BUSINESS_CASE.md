@@ -37,9 +37,9 @@ PetrolPeek provides:
   - A station is identified by brand and location
 
 #### 2. FUEL_TYPE (Reference Entity)
-- **Definition**: Types of fuel available (PMS, AGO, LPG)
+- **Definition**: Types of fuel available (ULD95, 50PPM, ULD93)
 - **Business Rules**:
-  - Each fuel type has a unique fuel code (PMS, AGO, LPG)
+  - Each fuel type has a unique fuel code (ULD95, 50PPM, ULD93)
   - Fuel codes are standardized across all stations
   - Price is tracked per unit (liter)
   - Fuel type cannot be deleted if associated with fuel availability records (referential integrity)
@@ -145,7 +145,7 @@ PetrolPeek provides:
 1. **Geographic Data**:
    - Latitude: Must be between -90 and 90
    - Longitude: Must be between -180 and 180
-   - Coordinates must be within Nigeria bounds for this implementation
+   - Coordinates must be within Lesotho bounds for this implementation
 
 2. **Contact Information**:
    - Phone numbers must be in valid format (if provided)

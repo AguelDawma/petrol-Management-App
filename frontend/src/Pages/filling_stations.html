@@ -457,7 +457,7 @@
 
   .chip.petrol { background: rgba(255,90,31,0.15); color: #FF7A44; border: 1px solid rgba(255,90,31,0.2); }
   .chip.diesel { background: rgba(59,130,246,0.12); color: #60A5FA; border: 1px solid rgba(59,130,246,0.2); }
-  .chip.lpg { background: rgba(168,85,247,0.12); color: #C084FC; border: 1px solid rgba(168,85,247,0.2); }
+  .chip.ULD93 { background: rgba(168,85,247,0.12); color: #C084FC; border: 1px solid rgba(168,85,247,0.2); }
   .chip.unavail { background: #1E1E1E; color: #555; border: 1px solid #2A2A2A; text-decoration: line-through; }
 
   /* Price */
@@ -522,7 +522,7 @@
   </div>
   <div class="location-pill">
     <span class="location-pin">📍</span>
-    Lagos, Nigeria
+    Maseru, Lesotho
     <span style="color:#555; margin-left:4px;">▾</span>
   </div>
 </header>
@@ -569,7 +569,7 @@ const stations = [
     rating: 4.7,
     reviewCount: 214,
     available: true,
-    fuels: ["petrol", "diesel", "lpg"],
+    fuels: ["petrol", "diesel", "ULD93"],
     price: 617,
     hours: "24 hrs",
   },
@@ -601,7 +601,7 @@ const stations = [
     rating: 3.8,
     reviewCount: 93,
     available: false,
-    fuels: ["diesel", "lpg"],
+    fuels: ["diesel", "ULD93"],
     price: null,
     hours: "7am – 9pm",
   },
@@ -633,7 +633,7 @@ const stations = [
     rating: 4.5,
     reviewCount: 112,
     available: true,
-    fuels: ["petrol", "diesel", "lpg"],
+    fuels: ["petrol", "diesel", "ULD93"],
     price: 618,
     hours: "6am – 11pm",
   },
@@ -675,12 +675,12 @@ function renderStars(rating) {
 }
 
 function renderFuelChips(fuels, available) {
-  const all = ['petrol','diesel','lpg'];
+  const all = ['petrol','diesel','ULD93'];
   return all.map(f => {
     const has = fuels.includes(f);
-    if (f === 'petrol') return `<span class="chip ${has && available ? 'petrol' : 'unavail'}">${has ? 'PMS' : 'No PMS'}</span>`;
-    if (f === 'diesel') return `<span class="chip ${has ? 'diesel' : 'unavail'}">${has ? 'AGO' : 'No AGO'}</span>`;
-    if (f === 'lpg') return `<span class="chip ${has ? 'lpg' : 'unavail'}">${has ? 'LPG' : 'No LPG'}</span>`;
+    if (f === 'petrol') return `<span class="chip ${has && available ? 'petrol' : 'unavail'}">${has ? 'ULD95' : 'No ULD95'}</span>`;
+    if (f === 'diesel') return `<span class="chip ${has ? 'diesel' : 'unavail'}">${has ? '50PPM' : 'No 50PPM'}</span>`;
+    if (f === 'ULD93') return `<span class="chip ${has ? 'ULD93' : 'unavail'}">${has ? 'ULD93' : 'No ULD93'}</span>`;
   }).join('');
 }
 

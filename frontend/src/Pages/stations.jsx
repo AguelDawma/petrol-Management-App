@@ -1,12 +1,16 @@
-import { useState, useEffect, useMemo, useCallback } from 'react'
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import Header from '../components/Header'
 import StationCard from '../components/StationCard'
 import { getDistance } from '../data/stations'
 import './stations.css'
+import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.css'
+import 'leaflet-routing-machine'
 
-// Default location: Lagos centre
-const DEFAULT_LAT = 6.4550
-const DEFAULT_LNG = 3.3850
+// Default location: Maseru centre
+const DEFAULT_LAT = -29.6109
+const DEFAULT_LNG = 27.5554
 const FILTERS = [
   { key: 'all', label: 'All' },
   { key: 'available', label: 'Petrol In' },
@@ -22,6 +26,9 @@ export default function Stations() {
   const [filter, setFilter] = useState('all')
   const [stations, setStations] = useState([])
   const [loading, setLoading] = useState(true)
+  const mapRef = useRef(null)
+  const routingControlRef = useRef(null)
+  const watchIdRef = useRef(null)
 
   useEffect(() => {
     const fetchStations = async () => {
@@ -42,9 +49,119 @@ export default function Stations() {
     fetchStations()
   }, [])
 
+  // Watch user location continuously
+  useEffect(() => {
+    if (!navigator.geolocation) return
+
+    const watchId = navigator.geolocation.watchPosition(
+      pos => {
+        setUserLat(pos.coords.latitude)
+        setUserLng(pos.coords.longitude)
+      },
+      err => {
+        console.error('Geolocation error:', err)
+        // Keep default location if watching fails
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 30000
+      }
+    )
+
+    watchIdRef.current = watchId
+
+    return () => {
+      if (watchIdRef.current) {
+        navigator.geolocation.clearWatch(watchIdRef.current)
+      }
+    }
+  }, [])
+
+  // Initialize map
+  useEffect(() => {
+    if (mapRef.current) return // Map already initialized
+
+    const map = L.map('map-container').setView([userLat, userLng], 13)
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors',
+      maxZoom: 19,
+    }).addTo(map)
+
+    // Add user location marker
+    L.circleMarker([userLat, userLng], {
+      radius: 8,
+      fillColor: '#1f6aff',
+      color: '#fff',
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 0.8
+    }).addTo(map).bindPopup('Your Location')
+
+    mapRef.current = map
+  }, [])
+
+  // Update map when user location changes
+  useEffect(() => {
+    if (mapRef.current) {
+      mapRef.current.setView([userLat, userLng], mapRef.current.getZoom())
+      // Update user location marker
+      mapRef.current.eachLayer(layer => {
+        if (layer instanceof L.CircleMarker && !layer.getPopup()?.getContent().includes('Station')) {
+          mapRef.current.removeLayer(layer)
+        }
+      })
+      L.circleMarker([userLat, userLng], {
+        radius: 8,
+        fillColor: '#1f66ff',
+        color: '#fff',
+        weight: 2,
+        opacity: 1,
+        fillOpacity: 0.8
+      }).addTo(mapRef.current).bindPopup('Your Location')
+    }
+  }, [userLat, userLng])
+
+  // Update route when selected station changes
+  useEffect(() => {
+    if (!mapRef.current || selectedId === null) {
+      if (routingControlRef.current) {
+        mapRef.current.removeControl(routingControlRef.current)
+        routingControlRef.current = null
+      }
+      return
+    }
+
+    const station = stations.find(s => s.id === selectedId)
+    if (!station) return
+
+    // Remove existing routing control
+    if (routingControlRef.current) {
+      mapRef.current.removeControl(routingControlRef.current)
+    }
+
+    // Add new routing control
+    const routingControl = L.Routing.control({
+      waypoints: [
+        L.latLng(userLat, userLng),
+        L.latLng(station.lat, station.lng)
+      ],
+      routeWhileDragging: false,
+      addWaypoints: false,
+      draggableWaypoints: false,
+      fitSelectedRoutes: true,
+      showAlternatives: false,
+      lineOptions: {
+        styles: [{ color: '#06c619', opacity: 0.8, weight: 5 }]
+      }
+    }).addTo(mapRef.current)
+
+    routingControlRef.current = routingControl
+  }, [selectedId, stations, userLat, userLng])
+
   const handleLoadMap = useCallback(() => {
-    // Map is not used in the full-page stations layout.
-    alert('Map view is disabled for this layout.')
+    // Map is now integrated directly
   }, [])
 
   const stationsWithDistance = useMemo(() => stations.map(s => ({
@@ -82,7 +199,7 @@ export default function Stations() {
         setUserLat(pos.coords.latitude)
         setUserLng(pos.coords.longitude)
       },
-      () => alert('Location access denied. Using default Lagos centre.')
+      () => alert('Location access denied. Using default Maseru centre.')
     )
   }, [])
 
@@ -96,13 +213,19 @@ export default function Stations() {
   return (
     <div className="stations-page">
       <Header onLoadMap={handleLoadMap} onLocate={handleLocate} />
-      <main className="stations-content">
+      <main className="stations-content-layout">
+        {/* Left Column: Map */}
+        <section className="map-panel">
+          <div id="map-container" className="leaflet-map"></div>
+        </section>
+
+        {/* Right Column: Station List */}
         <section className="stations-panel">
           <div className="hero">
             <div className="hero-tag">Your Local Fuel Now</div>
-            <h1>Find the nearest petrol station in seconds</h1>
+            <h1>Find the nearest petrol station</h1>
             <p>
-              Browse the full station list and get directions instantly.
+              Browse stations and view routes to your destination on the map.
             </p>
           </div>
 
@@ -155,6 +278,7 @@ export default function Stations() {
             )}
           </div>
         </section>
+
       </main>
     </div>
   )

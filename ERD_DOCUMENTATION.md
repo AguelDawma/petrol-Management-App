@@ -177,7 +177,7 @@ The PetrolPeek database is built on relational principles with proper normalizat
 |--------|------|-------------|-------------|
 | fuel_type_id | INTEGER | PRIMARY KEY, AUTO INCREMENT | Unique fuel type identifier |
 | fuel_name | TEXT | NOT NULL | Full fuel name (e.g., "Premium Motor Spirit") |
-| fuel_code | TEXT | UNIQUE, NOT NULL | Standard fuel code (PMS, AGO, LPG) |
+| fuel_code | TEXT | UNIQUE, NOT NULL | Standard fuel code (ULD95, 50PPM, ULD93) |
 | fuel_price | REAL | NOT NULL | Standard/base price per liter |
 | created_at | DATETIME | DEFAULT CURRENT_TIMESTAMP | Creation timestamp |
 

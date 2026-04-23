@@ -13,10 +13,13 @@
   background: #0a0a0f;
   color: var(--fuel-text);
   font-family: 'DM Sans', sans-serif;
+  height: 100vh;
 }
 
-.stations-content {
-  display: block;
+.stations-content-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
   padding: 18px;
   min-height: calc(100vh - 96px);
 }
@@ -29,12 +32,34 @@
   padding: 20px;
   min-height: calc(100vh - 130px);
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  overflow-y: scroll;
+}
+
+.map-panel {
+  background: linear-gradient(145deg, #121828 0%, #191f38 52%, #0f1322 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+  border-radius: 18px;
+  padding: 0;
+  overflow: hidden;
+  height: 80vh;
+}
+
+#map-container,
+.leaflet-map {
+  width: 100%;
+  height: 100vh;
+  border-radius: 18px;
 }
 
 .station-list {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 14px;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  flex: 1;
 }
 
 .search-filter-row {
@@ -77,11 +102,13 @@
 }
 
 @media (max-width: 1000px) {
-  .stations-content {
+  .stations-content-layout {
+    grid-template-columns: 1fr;
     min-height: auto;
   }
 
-  .stations-panel {
+  .stations-panel,
+  .map-panel {
     max-height: auto;
     min-height: 320px;
   }
@@ -148,15 +175,39 @@
   color: var(--fuel-sub);
 }
 
-@media (max-width: 1000px) {
-  .stations-content {
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--fuel-sub);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
 
-  .stations-panel,
-  .stations-map {
-    max-height: auto;
-    min-height: 320px;
-  }
+/* Leaflet Routing Machine Dark Theme Customization */
+.leaflet-routing-container {
+  background: rgba(20, 20, 32, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: var(--fuel-text) !important;
+}
+
+.leaflet-routing-alternatives-list,
+.leaflet-routing-alt {
+  background: rgba(20, 20, 32, 0.9) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.leaflet-routing-alt-selected {
+  background: rgba(255, 90, 31, 0.15) !important;
+  border: 1px solid rgba(255, 90, 31, 0.3) !important;
+}
+
+.leaflet-routing-waypoint {
+  background: var(--fuel-orange) !important;
+  border: 2px solid #fff !important;
+}
+
+.leaflet-routing-error-container {
+  background: rgba(200, 50, 50, 0.2) !important;
+  border: 1px solid rgba(200, 50, 50, 0.5) !important;
+  color: #ff8888 !important;
 }

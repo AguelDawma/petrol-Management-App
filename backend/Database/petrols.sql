@@ -56,17 +56,17 @@ CREATE TABLE IF NOT EXISTS `USER` (
 
 -- INSERT DATA
 INSERT IGNORE INTO FUEL_TYPE (fuel_type_id, fuel_name, fuel_code, fuel_price) VALUES
-    (1, 'Premium Motor Spirit', 'PMS', 617),
-    (2, 'Diesel', 'AGO', 620),
-    (3, 'LPG', 'LPG', 450);
+    (1, 'Premium Motor Spirit', 'ULD95', 617),
+    (2, 'Diesel', '50PPM', 620),
+    (3, 'ULD93', 'ULD93', 450);
 
 INSERT IGNORE INTO FILLING_STATION (station_id, station_name, brand, area, address, latitude, longitude, rating, reviews, available, maps_url, operating_hours, is_active) VALUES
-    (1, 'NNPC Mega Station', 'NNPC', 'Victoria Island', '12 Adeola Odeku St, VI, Lagos', 6.4281, 3.4219, 4.7, 214, 1, 'https://www.google.com/maps/place/?q=place_id:ChIJ7aVxnOTH...','24 hrs', '24 hrs', 1),
-    (2, 'TotalEnergies', 'Total', 'Lekki Phase 1', '45 Admiralty Way, Lekki, Lagos', 6.4350, 3.4750, 4.3, 187, 1, 'https://www.google.com/maps/place/?q=place_id:ChIJp6yY7pqx...', '6am – 10pm', 1),
-    (3, 'Conoil Station', 'Conoil', 'Ikeja GRA', '7 Mobolaji Bank-Anthony Way, Ikeja', 6.5833, 3.3500, 3.8, 93, 0, '', '7am – 9pm', 1),
-    (4, 'Oando Express', 'Oando', 'Surulere', '22 Adeniran Ogunsanya St, Surulere', 6.4990, 3.3540, 4.1, 156, 1, 'https://www.google.com/maps/place/?q=place_id:ChIJk5gVRnwJ...', '24 hrs', 1),
-    (5, 'Tholo Filling Station', 'Ardova', 'Maryland', '15 Ikorodu Road, Maryland, Lagos', -29.44740367505628, 27.71530668374899, 4.5, 112, 1, '', '6am – 11pm', 1),
-    (6, 'MRS Petroleum', 'MRS', 'Gbagada', '3 Hospital Road, Gbagada, Lagos', 6.5430, 3.3800, 3.5, 47, 0, '', '7am – 8pm', 1);
+    (1, 'Shell Maseru', 'Shell', 'Kingsway', '123 Kingsway Road, Maseru', -29.6109, 27.5554, 4.7, 214, 1, 'https://www.google.com/maps/place/?q=place_id:ChIJ7aVxnOTH...','24 hrs', '24 hrs', 1),
+    (2, 'BP Maseru', 'BP', 'Main North Road', '45 Main North Road, Maseru', -29.6120, 27.5560, 4.3, 187, 1, 'https://www.google.com/maps/place/?q=place_id:ChIJp6yY7pqx...', '6am – 10pm', 1),
+    (3, 'Nyuma Filling Station', 'Nyuma', 'Ha Thetsane', '120 Ha Thetsane Road, Maseru', -29.6105, 27.5575, 3.8, 93, 0, '', '7am – 9pm', 1),
+    (4, 'Lesedi Petrol Station', 'Lesedi', 'Qeme', '22 Qeme Main Road, Maseru', -29.6128, 27.5545, 4.1, 156, 1, 'https://www.google.com/maps/place/?q=place_id:ChIJk5gVRnwJ...', '24 hrs', 1),
+    (5, 'Total Maseru', 'Total', 'Pioneer Road', '15 Pioneer Road, Maseru', -29.6100, 27.5580, 4.5, 112, 1, '', '6am – 11pm', 1),
+    (6, 'Engen Maseru', 'Engen', 'Moshoeshoe Road', '3 Moshoeshoe Road, Maseru', -29.6130, 27.5540, 3.5, 47, 0, '', '7am – 8pm', 1);
 
 INSERT IGNORE INTO FUEL_AVAILABILITY (availability_id, station_id, fuel_type_id, is_available, price_per_litre, quantity_in_stock) VALUES
     (1, 1, 1, 1, 617, 1200),
@@ -87,7 +87,42 @@ INSERT IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`
 INSERT IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Mirror', 'mirror@gmail.com', NULL, '$2b$10$LCN7oh0gYFJ.xYbeTD2py.YkQdh//jMVWy94SltqVaI7Rsay9jhuy');
 INSERT IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Test User2', 'test2@example.com', NULL, '$2b$10$lgpfmjHEI9vt3OQp74YLzexUXICHGnickP.kUW1x0FcrpoyyXQmWy');
 INSERT IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Thapelo Peter', 'thapelopeter@gmail.com', NULL, '$2b$10$5Y.c.FCv28/z.ESAyjRdgu0XkfvVKGCHO.zvG7m7oQY68zxsgmkIa');
+<<<<<<< HEAD
 INSERT IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Debug User', 'test+ppfhfu@example.com', '1234567890', '$2b$10$WjWnwtjvtffT79o3ArNNa.qI.Rsj/aEh8ZSGdcW2PC/W1ktMLleAu');
 INSERT IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Debug User 2', 'test+acjvsz@example.com', '1234567890', '$2b$10$I7aXHPpsqxNPz4yCnyco7OKTXQqIA8b5jEpbM/MufwuANzoXf5mD2');
 INSERT IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Smoke Test User', 'test+oabeex@example.com', '1234567890', '$2b$10$Wp8gyMBgOJaIXWgcP0299e04/S4.OuPk5L/gfbrcrzgLEWozANfii');
 INSERT IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Thapelo', 'thapelo@petrolpeek.com', NULL, '$2b$10$ih2dnA6byQTS2si9.Auisef9SeC2hBuLZpGYAZ2OgzfLaqexVxn1W');
+=======
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Unnamed Station', 'Unknown Brand', 'Unknown Area', 'No address', 6.5853878, 3.390152, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Total', 'Unknown Brand', 'Unknown Area', 'No address', 6.4713433, 3.3087395, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Mobil', 'Unknown Brand', 'Unknown Area', 'No address', 6.4706725, 3.3070614, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('NNPC', 'Unknown Brand', 'Unknown Area', 'No address', 6.4701325, 3.3221809, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Forte oil', 'Unknown Brand', 'Unknown Area', 'No address', 6.4480234, 3.4705923, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Unnamed Station', 'Unknown Brand', 'Unknown Area', 'No address', 6.5618084, 3.3218642, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Total', 'Total', 'Unknown Area', 'No address', 6.4509366, 3.4011958, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Forte Oil', 'Unknown Brand', 'Unknown Area', 'No address', 6.4345895, 3.4556197, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('CONOIL', 'Unknown Brand', 'Unknown Area', 'No address', 6.5543468, 3.3242262, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Forte Oil', 'Unknown Brand', 'Unknown Area', 'No address', 6.4482134, 3.4051122, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Forte Oil', 'Unknown Brand', 'Unknown Area', 'No address', 6.4524343, 3.419849, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Forte Oil', 'Unknown Brand', 'Unknown Area', 'No address', 6.539388, 3.3073124, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Petrocam', 'Unknown Brand', 'Unknown Area', 'No address', 6.5405031, 3.3185333, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Nationwide', 'Unknown Brand', 'Unknown Area', 'No address', 6.5373007, 3.3049653, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Unnamed Station', 'Unknown Brand', 'Unknown Area', 'No address', 6.5392384, 3.3023658, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Mubostic', 'Unknown Brand', 'Unknown Area', 'No address', 6.5415461, 3.3080571, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Destiny', 'Unknown Brand', 'Unknown Area', 'No address', 6.5393566, 3.3114677, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Total', 'Total', 'Unknown Area', 'No address', 6.4541021, 3.4027421, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Unnamed Station', 'Unknown Brand', 'Unknown Area', 'No address', 6.4884539, 3.3001919, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Total Oshodi', 'Total', 'Unknown Area', 'No address', 6.5588514, 3.3640983, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Fatgbems', 'Unknown Brand', 'Unknown Area', 'No address', 6.4647172, 3.3175165, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Forte Oil', 'Forte Oil', 'Unknown Area', 'No address', 6.4719302, 3.324101, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Conoil', 'Conoil', 'Unknown Area', 'No address', 6.5057279, 3.3230026, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('MRS', 'MRS', 'Unknown Area', 'No address', 6.4889228, 3.325249, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Mobil', 'Mobil', 'Unknown Area', 'No address', 6.5531341, 3.3673677, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Mobil', 'Mobil', 'Unknown Area', 'No address', 6.5720715, 3.3672259, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Oando', 'Oando', 'Unknown Area', 'No address', 6.5713954, 3.3672174, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Adonai', 'Unknown Brand', 'Unknown Area', 'No address', 6.5519457, 3.3414844, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Unnamed Station', 'Unknown Brand', 'Unknown Area', 'No address', 6.4920986, 3.3757771, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Unnamed Station', 'Unknown Brand', 'Unknown Area', 'No address', 6.5845036, 3.3897769, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Unnamed Station', 'Unknown Brand', 'Unknown Area', 'No address', 6.5815761, 3.3934106, '24 hrs', 1);
+INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Unnamed Station', 'Unknown Brand', 'Unknown Area', 'No address', 6.5810502, 3.3928851, '24 hrs', 1);
+>>>>>>> feature/map

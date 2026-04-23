@@ -226,17 +226,17 @@ Response 200:
 [
   {
     "id": 1,
-    "name": "NNPC Mega Station",
-    "brand": "NNPC",
-    "area": "Victoria Island",
-    "address": "12 Adeola Odeku St, VI, Lagos",
-    "lat": 6.4281,
-    "lng": 3.4219,
+    "name": "Shell Maseru",
+    "brand": "Shell",
+    "area": "Kingsway",
+    "address": "123 Kingsway Road, Maseru",
+    "lat": -29.6109,
+    "lng": 27.5554,
     "rating": 4.7,
     "reviews": 214,
     "available": true,
     "hours": "24 hrs",
-    "fuels": ["PMS", "AGO", "LPG"],
+    "fuels": ["ULD95", "50PPM", "ULD93"],
     "price": 617
   },
   ...
@@ -254,7 +254,7 @@ Response 200:
   ...
   "fuels": [
     {
-      "fuel_code": "PMS",
+      "fuel_code": "ULD95",
       "is_available": true,
       "price_per_litre": 617,
       "quantity_in_stock": 1200
@@ -275,8 +275,8 @@ Content-Type: application/json
   "brand": "Shell",
   "area": "Lekki",
   "address": "123 Main Street",
-  "latitude": 6.4350,
-  "longitude": 3.4750,
+  "latitude": -29.6120,
+  "longitude": 27.5560,
   "operating_hours": "6am - 10pm",
   "phone_number": "+234-XXX-XXXX",
   "manager_name": "Manager Name"
@@ -354,7 +354,7 @@ Response 200:
   "fuel_types": 3,
   "data": [
     {
-      "fuel_code": "PMS",
+      "fuel_code": "ULD95",
       "fuel_name": "Premium Motor Spirit",
       "total_stations_offering": 10,
       "stations_with_stock": 8,
