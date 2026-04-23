@@ -1,41 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Routes, Route } from 'react-router-dom'
+import { AuthProvider } from './contexts/AuthContext'
+import Home from './Pages/home'
+import Stations from './Pages/stations'
+import Login from './components/Login'
+import Register from './components/Register'
+import ProtectedRoute from './components/ProtectedRoute'
+import AdminDashboard from './components/AdminDashboard'
+import Reports from './components/Reports'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <div className="cover-page">
-        <div className="overlay">
-          <header className="navbar">
-            <div className="logo">PetrolPeek</div>
-            <button className="login-btn">Manager Login</button>
-          </header>
-
-          <main className="content">
-            <h1>Fueling Your Journey</h1>
-            <p className="tagline">Real-time stock levels for petrol and diesel at your fingertips.</p>
-            
-            <div className="services-grid">
-              <div className="service-card">
-                <h3>Live Status</h3>
-                <p>Check if your station has 93, 95, or Diesel before you drive.</p>
-              </div>
-              <div className="service-card">
-                <h3>Manager Tools</h3>
-                <p>Update inventory volumes and manage supply logs instantly.</p>
-              </div>
-            </div>
-            
-            <button className="cta-button">View Live Map</button>
-          </main>
-        </div>
-      </div>
-    </>
+    <AuthProvider>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+        <Route path="/stations" element={<ProtectedRoute><Stations /></ProtectedRoute>} />
+        <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+        <Route path="/reports" element={<ProtectedRoute><Reports /></ProtectedRoute>} />
+        <Route path="*" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+      </Routes>
+    </AuthProvider>
   )
 }
-
-export default App

@@ -1,0 +1,251 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  height: 64px;
+  background: linear-gradient(145deg, #1a1a1a 0%, #333333 52%, #0f0f0f 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+  z-index: 200;
+  gap: 20px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex: 1;
+}
+
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+  letter-spacing: -0.04em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #ffffff;
+  transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
+.flame {
+  width: 32px;
+  height: 32px;
+  background: #ffd700;
+  border-radius: 50% 50% 35% 35%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  animation: flicker 2s ease-in-out infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+.nav {
+  display: flex;
+  gap: 0;
+  align-items: center;
+}
+
+.navLink {
+  padding: 8px 16px;
+  color: #999;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.navLink:hover {
+  color: #ffffff;
+  background: rgba(0, 102, 204, 0.1);
+}
+
+.navLink.active {
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.15);
+  border-bottom: 2px solid #ffd700;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+}
+
+.welcome {
+  font-size: 0.85rem;
+  color: #f0ede8;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.logoutBtn {
+  background: var(--primary-gold);
+  color: var(--bg-dark);
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logoutBtn:hover {
+  background: #e6c200;
+  box-shadow: 0 3px 10px rgba(255, 215, 0, 0.2);
+}
+
+.locateBtn {
+  background: rgba(0, 102, 204, 0.15);
+  color: var(--primary-blue);
+  border: 1px solid rgba(0, 102, 204, 0.3);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.locateBtn:hover {
+  background: rgba(0, 102, 204, 0.25);
+  border-color: rgba(0, 102, 204, 0.5);
+  box-shadow: 0 3px 10px rgba(0, 102, 204, 0.15);
+}
+
+@media (max-width: 1024px) {
+  .header {
+    padding: 0 1rem;
+    gap: 12px;
+  }
+
+  .nav {
+    gap: 4px;
+  }
+
+  .navLink {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+
+  .left {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 12px 1rem;
+  }
+
+  .left {
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .nav {
+    flex: 1;
+    justify-content: flex-start;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  .navLink {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .right {
+    width: 100%;
+    gap: 8px;
+    justify-content: space-between;
+  }
+
+  .userInfo {
+    gap: 8px;
+    padding: 6px 10px;
+  }
+
+  .welcome {
+    font-size: 0.8rem;
+  }
+
+  .logoutBtn {
+    padding: 4px 10px;
+    font-size: 0.75rem;
+  }
+
+  .locateBtn {
+    padding: 4px 10px;
+    font-size: 0.85rem;
+  }
+}
+
+.apiInput::placeholder {
+  color: var(--text-sub);
+}
+
+.loadBtn {
+  background: var(--orange);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.loadBtn:hover {
+  opacity: 0.85;
+  transform: scale(1.03);
+}
+
+.locateBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 14px;
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 500;
+  transition: border-color 0.2s;
+}
+
+.locateBtn:hover {
+  border-color: var(--orange);
+}

@@ -1,0 +1,170 @@
+.sidebar {
+  width: 360px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.top {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 12px;
+  margin-bottom: 9px;
+  transition: border-color 0.2s;
+}
+
+.searchBar:focus-within {
+  border-color: var(--orange);
+}
+
+.searchIcon {
+  color: var(--text-sub);
+  font-size: 0.9rem;
+}
+
+.searchInput {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 0.84rem;
+  width: 100%;
+}
+
+.searchInput::placeholder {
+  color: var(--text-sub);
+}
+
+.filterRow {
+  display: flex;
+  gap: 5px;
+}
+
+.fBtn {
+  flex: 1;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text-sub);
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 5px 4px;
+  border-radius: 7px;
+  transition: all 0.18s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.fBtn:hover,
+.fBtn.active {
+  background: var(--orange-dim);
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+.nearestBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 12px 0;
+  background: rgba(255, 69, 0, 0.08);
+  border: 1px solid rgba(255, 69, 0, 0.2);
+  border-radius: 10px;
+  padding: 10px 12px;
+  flex-shrink: 0;
+}
+
+.nearestLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nearestLabel {
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--orange);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.nearestName {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.nearestRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.nearestDist {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--orange);
+}
+
+.nearestPrice {
+  font-size: 0.68rem;
+  color: var(--text-sub);
+}
+
+.resultsMeta {
+  padding: 8px 14px 4px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 3rem 1rem;
+  color: var(--text-sub);
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+.empty span {
+  font-size: 2.5rem;
+}

@@ -1,0 +1,249 @@
+.card {
+  background: var(--surface2);
+  box-shadow: 12px 12px 24px rgba(0, 0, 0, 0.85);
+  border-radius: 14px;
+  padding: 14px;
+  cursor: pointer;
+  transition: border-color 0.22s, background 0.22s, transform 0.22s, box-shadow 0.22s;
+  animation: slideIn 0.4s ease both;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 85% 15%, var(--orange-dim), transparent 60%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover {
+  border-color: var(--border-hover);
+  background: rgba(255, 69, 0, 0.04);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+.selected {
+  border-color: var(--border-hover) !important;
+  background: rgba(255, 69, 0, 0.06) !important;
+}
+
+.selected::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 3px;
+  background: var(--orange);
+  border-radius: 0 3px 3px 0;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.info {
+  flex: 1;
+}
+
+.name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 2px;
+}
+
+.address {
+  font-size: 0.7rem;
+  color: var(--text-sub);
+  line-height: 1.3;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.64rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.available {
+  background: rgba(0, 200, 83, 0.1);
+  color: var(--green);
+  border: 1px solid rgba(0, 200, 83, 0.22);
+}
+
+.unavailable {
+  background: rgba(255, 61, 61, 0.08);
+  color: var(--red);
+  border: 1px solid rgba(255, 61, 61, 0.18);
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.available .dot {
+  animation: pulse 2s infinite;
+}
+
+.ratingRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  font-size: 0.82rem;
+}
+
+.on {
+  color: var(--yellow);
+}
+
+.off {
+  color: var(--text-muted);
+}
+
+.score {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.reviewCount {
+  font-size: 0.68rem;
+  color: var(--text-sub);
+}
+
+.barBg {
+  height: 3px;
+  background: var(--surface3);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.barFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--orange), var(--yellow));
+  border-radius: 999px;
+  transition: width 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.chips {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 6px;
+  letter-spacing: 0.06em;
+}
+
+.petrol {
+  background: rgba(255, 69, 0, 0.12);
+  color: #ff7744;
+  border: 1px solid rgba(255, 69, 0, 0.2);
+}
+
+.diesel {
+  background: rgba(59, 130, 246, 0.1);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.ULD93 {
+  background: rgba(168, 85, 247, 0.1);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.none {
+  background: var(--surface3);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  opacity: 0.5;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  font-size: 0.7rem;
+  color: var(--text-sub);
+}
+
+.price {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--orange);
+}
+
+.noPrice {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--orange);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.navBtn:hover {
+  opacity: 0.85;
+  transform: scale(1.05);
+}

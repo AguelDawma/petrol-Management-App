@@ -1,0 +1,59 @@
+from pyswip import Prolog
+
+# Initialize the Prolog interpreter and load the family tree knowledge base
+prolog = Prolog()
+
+try:
+    prolog.consult('familytree.pl')
+except Exception as e:
+    print(f"Error loading Prolog file: {e}")
+    exit()
+
+def find_relation(relation, name):
+    """
+    Generic function to find a kinship relation.
+    
+    :param relation: The type of relation (father_of or mother_of)
+    :param name: The name of the person to query
+    :return: The name of the relative or None if not found
+    """
+    query = f"{relation}(X, '{name}')"
+    result = list(prolog.query(query))  # Execute the query and get results
+    return result[0]['X'] if result else None
+
+def main():
+    """Main function to interact with the user."""
+    print("Welcome to the Family Tree Query System!")
+    
+    while True:
+        user_input = input("Ask a question about kinship (type 'exit' to quit): ").strip()
+
+        if user_input.lower() == 'exit':
+            print("Exiting the system. Goodbye!")
+            break
+        
+        # Check for father or mother questions
+        if "father of" in user_input:
+            name = user_input.split("father of")[-1].strip()  # Extract the name
+            father_name = find_relation("father_of", name)
+            if father_name:
+                response = f"Ntate {father_name} is {name}'s father."
+            else:
+                response = f"No father found for {name}."
+            print(response)
+        
+        elif "mother of" in user_input:
+            name = user_input.split("mother of")[-1].strip()  # Extract the name
+            mother_name = find_relation("mother_of", name)
+            if mother_name:
+                response = f"Ntsu {mother_name} is {name}'s mother."
+            else:
+                response = f"No mother found for {name}."
+            print(response)
+        
+        else:
+            print("Please ask a question about 'father of' or 'mother of'.")
+
+if __name__ == "__main__":
+    main()
+

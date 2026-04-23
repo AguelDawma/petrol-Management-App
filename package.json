@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "start": "npx concurrently \"cd backend && npm start\" \"cd frontend && npm run dev\"",
+    "backend": "cd backend && npm start",
+    "frontend": "cd frontend && npm run dev"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "express": "^5.2.1",
+    "leaflet": "^1.9.4",
+    "leaflet-routing-machine": "^3.2.12",
+    "mysql2": "^3.20.0",
+    "react": "^19.2.4",
+    "react-router-dom": "^7.13.0"
+  }
+}
