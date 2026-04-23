@@ -214,7 +214,12 @@ export default function Stations() {
     <div className="stations-page">
       <Header onLoadMap={handleLoadMap} onLocate={handleLocate} />
       <main className="stations-content-layout">
-        {/* Left Column: Station List */}
+        {/* Left Column: Map */}
+        <section className="map-panel">
+          <div id="map-container" className="leaflet-map"></div>
+        </section>
+
+        {/* Right Column: Station List */}
         <section className="stations-panel">
           <div className="hero">
             <div className="hero-tag">Your Local Fuel Now</div>
@@ -274,10 +279,6 @@ export default function Stations() {
           </div>
         </section>
 
-        {/* Right Column: Map */}
-        <section className="map-panel">
-          <div id="map-container" className="leaflet-map"></div>
-        </section>
       </main>
     </div>
   )

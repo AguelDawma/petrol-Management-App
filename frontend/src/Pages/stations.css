@@ -13,6 +13,7 @@
   background: #0a0a0f;
   color: var(--fuel-text);
   font-family: 'DM Sans', sans-serif;
+  height: 100vh;
 }
 
 .stations-content-layout {
@@ -33,6 +34,8 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  height: 80vh;
+  overflow-y: scroll;
 }
 
 .map-panel {
@@ -57,7 +60,6 @@
   flex-direction: column;
   gap: 14px;
   flex: 1;
-  overflow-y: auto;
 }
 
 .search-filter-row {
