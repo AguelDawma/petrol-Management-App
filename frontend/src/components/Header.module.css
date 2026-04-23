@@ -4,7 +4,7 @@
   justify-content: space-between;
   padding: 0 1.5rem;
   height: 64px;
-  background: linear-gradient(145deg, #121828 0%, #191f38 52%, #0f1322 100%);
+  background: linear-gradient(145deg, #1a1a1a 0%, #333333 52%, #0f0f0f 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   flex-shrink: 0;
   z-index: 200;
@@ -27,7 +27,7 @@
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  color: #f0ede8;
+  color: #ffffff;
   transition: opacity 0.2s ease;
 }
 
@@ -38,7 +38,7 @@
 .flame {
   width: 32px;
   height: 32px;
-  background: #ff5a1f;
+  background: #ffd700;
   border-radius: 50% 50% 35% 35%;
   display: flex;
   align-items: center;
@@ -70,14 +70,14 @@
 }
 
 .navLink:hover {
-  color: #f0ede8;
-  background: rgba(255, 90, 31, 0.1);
+  color: #ffffff;
+  background: rgba(0, 102, 204, 0.1);
 }
 
 .navLink.active {
-  color: #ff5a1f;
-  background: rgba(255, 90, 31, 0.15);
-  border-bottom: 2px solid #ff5a1f;
+  color: #ffd700;
+  background: rgba(255, 215, 0, 0.15);
+  border-bottom: 2px solid #ffd700;
 }
 
 .right {
@@ -105,8 +105,8 @@
 }
 
 .logoutBtn {
-  background: #ff5a1f;
-  color: white;
+  background: var(--primary-gold);
+  color: var(--bg-dark);
   border: none;
   border-radius: 6px;
   padding: 6px 14px;
@@ -117,14 +117,14 @@
 }
 
 .logoutBtn:hover {
-  background: #ff6a30;
-  box-shadow: 0 3px 10px rgba(255, 90, 31, 0.2);
+  background: #e6c200;
+  box-shadow: 0 3px 10px rgba(255, 215, 0, 0.2);
 }
 
 .locateBtn {
-  background: rgba(255, 90, 31, 0.15);
-  color: #ff5a1f;
-  border: 1px solid rgba(255, 90, 31, 0.3);
+  background: rgba(0, 102, 204, 0.15);
+  color: var(--primary-blue);
+  border: 1px solid rgba(0, 102, 204, 0.3);
   border-radius: 6px;
   padding: 6px 14px;
   font-size: 0.9rem;
@@ -135,9 +135,9 @@
 }
 
 .locateBtn:hover {
-  background: rgba(255, 90, 31, 0.25);
-  border-color: rgba(255, 90, 31, 0.5);
-  box-shadow: 0 3px 10px rgba(255, 90, 31, 0.15);
+  background: rgba(0, 102, 204, 0.25);
+  border-color: rgba(0, 102, 204, 0.5);
+  box-shadow: 0 3px 10px rgba(0, 102, 204, 0.15);
 }
 
 @media (max-width: 1024px) {

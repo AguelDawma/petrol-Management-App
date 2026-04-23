@@ -172,3 +172,7 @@ INSERT OR IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_ha
 INSERT OR IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Mirror', 'mirror@gmail.com', NULL, '$2b$10$LCN7oh0gYFJ.xYbeTD2py.YkQdh//jMVWy94SltqVaI7Rsay9jhuy');
 INSERT OR IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Test User2', 'test2@example.com', NULL, '$2b$10$lgpfmjHEI9vt3OQp74YLzexUXICHGnickP.kUW1x0FcrpoyyXQmWy');
 INSERT OR IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Thapelo Peter', 'thapelopeter@gmail.com', NULL, '$2b$10$5Y.c.FCv28/z.ESAyjRdgu0XkfvVKGCHO.zvG7m7oQY68zxsgmkIa');
+INSERT OR IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Debug User', 'test+ppfhfu@example.com', '1234567890', '$2b$10$WjWnwtjvtffT79o3ArNNa.qI.Rsj/aEh8ZSGdcW2PC/W1ktMLleAu');
+INSERT OR IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Debug User 2', 'test+acjvsz@example.com', '1234567890', '$2b$10$I7aXHPpsqxNPz4yCnyco7OKTXQqIA8b5jEpbM/MufwuANzoXf5mD2');
+INSERT OR IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Smoke Test User', 'test+oabeex@example.com', '1234567890', '$2b$10$Wp8gyMBgOJaIXWgcP0299e04/S4.OuPk5L/gfbrcrzgLEWozANfii');
+INSERT OR IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Thapelo', 'thapelo@petrolpeek.com', NULL, '$2b$10$ih2dnA6byQTS2si9.Auisef9SeC2hBuLZpGYAZ2OgzfLaqexVxn1W');

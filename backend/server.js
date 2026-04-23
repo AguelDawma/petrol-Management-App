@@ -81,29 +81,13 @@ const initDb = () => {
 
     db.serialize(() => {
         db.run('PRAGMA foreign_keys = ON;');
-        
-        // Drop existing tables for clean initialization (development mode)
-        const dropTables = `
-            DROP TABLE IF EXISTS TRANSACTION_LOG;
-            DROP TABLE IF EXISTS STATION_REVIEW;
-            DROP TABLE IF EXISTS FUEL_AVAILABILITY;
-            DROP TABLE IF EXISTS FUEL_TYPE;
-            DROP TABLE IF EXISTS FILLING_STATION;
-            DROP TABLE IF EXISTS USER;
-        `;
-        
-        db.exec(dropTables, (err) => {
+
+        db.exec(sql, (err) => {
             if (err) {
-                console.warn('Warning during table drop:', err.message);
+                console.error('Error executing SQL:', err);
+            } else {
+                console.log('Database initialized');
             }
-            
-            db.exec(sql, (err) => {
-                if (err) {
-                    console.error('Error executing SQL:', err);
-                } else {
-                    console.log('Database initialized');
-                }
-            });
         });
     });
 };

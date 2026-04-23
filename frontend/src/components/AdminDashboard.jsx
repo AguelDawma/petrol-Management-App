@@ -15,6 +15,8 @@ export default function AdminDashboard() {
   const [filterBrand, setFilterBrand] = useState('all')
   const [formLoading, setFormLoading] = useState(false)
   const [successMessage, setSuccessMessage] = useState('')
+  const [importLoading, setImportLoading] = useState(false)
+  const [importMessage, setImportMessage] = useState('')
 
   const token = localStorage.getItem('token')
 
@@ -121,6 +123,45 @@ export default function AdminDashboard() {
     }
   }
 
+  const [showOSMImport, setShowOSMImport] = useState(false)
+  const [osmBounds, setOsmBounds] = useState("-29.35,27.45,-29.28,27.55") // Default Maseru
+
+  const handleImportFromOSM = async () => {
+    try {
+      setImportLoading(true)
+      setError(null)
+      setImportMessage('')
+
+      const response = await fetch('http://localhost:3000/api/stations/import-osm', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ bounds: osmBounds })
+      })
+
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || 'Failed to import stations')
+      }
+
+      const data = await response.json()
+      setImportMessage(`Successfully imported ${data.imported} out of ${data.total} stations from OpenStreetMap!`)
+      setSuccessMessage(`Imported ${data.imported} stations from OSM`)
+      
+      setTimeout(() => {
+        fetchStations()
+        setImportMessage('')
+        setShowOSMImport(false)
+      }, 3000)
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setImportLoading(false)
+    }
+  }
+
   const brands = [...new Set(stations.map(s => s.brand))]
   
   const filteredStations = stations.filter(station => {
@@ -154,15 +195,66 @@ export default function AdminDashboard() {
       <div className={styles.content}>
         <div className={styles.header}>
           <h1>Station Management Dashboard</h1>
-          <button onClick={() => handleOpenForm()} className={styles.addBtn}>
-            + Add New Station
-          </button>
+          <div className={styles.headerActions}>
+            <button 
+              onClick={() => setShowOSMImport(true)} 
+              className={styles.importBtn}
+            >
+              📍 Import from OSM
+            </button>
+            <button onClick={() => handleOpenForm()} className={styles.addBtn}>
+              + Add New Station
+            </button>
+          </div>
         </div>
+
+        {showOSMImport && (
+          <div className={styles.osmImportForm}>
+            <h3>Import Stations from OpenStreetMap</h3>
+            <div className={styles.osmFormGroup}>
+              <label htmlFor="osmBounds">Bounds (south,west,north,east):</label>
+              <input
+                id="osmBounds"
+                type="text"
+                value={osmBounds}
+                onChange={(e) => setOsmBounds(e.target.value)}
+                placeholder="-29.35,27.45,-29.28,27.55"
+                className={styles.osmInput}
+              />
+              <small className={styles.osmHelp}>
+                Format: south,west,north,east (latitude/longitude coordinates)<br/>
+                Examples: Maseru (-29.35,27.45,-29.28,27.55), Lagos (6.4,3.2,6.7,3.6)
+              </small>
+            </div>
+            <div className={styles.osmButtons}>
+              <button 
+                onClick={handleImportFromOSM} 
+                className={styles.osmImportBtn}
+                disabled={importLoading}
+              >
+                {importLoading ? 'Importing...' : 'Import Stations'}
+              </button>
+              <button 
+                onClick={() => setShowOSMImport(false)} 
+                className={styles.osmCancelBtn}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        )}
 
         {successMessage && (
           <div className={styles.successBanner}>
             {successMessage}
             <button onClick={() => setSuccessMessage('')} className={styles.closeBanner}>×</button>
+          </div>
+        )}
+
+        {importMessage && (
+          <div className={styles.infoBanner}>
+            {importMessage}
+            <button onClick={() => setImportMessage('')} className={styles.closeBanner}>×</button>
           </div>
         )}
 
