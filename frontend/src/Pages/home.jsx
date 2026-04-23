@@ -16,8 +16,8 @@ function Home() {
       {}
       <div className="home-content">
         <div className="home-text">
-          <h1 className="home-title">Nairobi's Nearest Petrol Station finder</h1>
-          <p className="home-subtitle">Hi, Welcome to the Petrol Station Finder App, where we help you to find the best shortest route to the petrol station near you depending on where you are.</p>
+          <h1 className="home-title">Mafura Fill</h1>
+          <p className="home-subtitle">Hi, Welcome to the Petrol Station Finder App, where we help you find the best shortest route to the petrol station near you.</p>
           <p className="home-description">
             Get quick access to fuel prices, locations, and real-time availability of petrol stations around you.
           </p>
