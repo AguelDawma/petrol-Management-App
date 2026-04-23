@@ -295,7 +295,7 @@ Or register new account:
 ### Tables (6 Tables)
 1. **USER**: User accounts and authentication
 2. **FILLING_STATION**: Petrol station information
-3. **FUEL_TYPE**: Available fuel types (PMS, AGO, LPG)
+3. **FUEL_TYPE**: Available fuel types (ULD95, 50PPM, ULD93)
 4. **FUEL_AVAILABILITY**: Station-fuel relationships
 5. **STATION_REVIEW**: Customer reviews and ratings
 6. **TRANSACTION_LOG**: Audit trail of all operations
