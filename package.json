@@ -1,6 +1,5 @@
 {
   "scripts": {
-    //"dev": "cd frontend && npm run dev",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
