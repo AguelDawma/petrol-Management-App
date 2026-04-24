@@ -93,14 +93,15 @@ CREATE INDEX IF NOT EXISTS idx_transaction_type ON TRANSACTION_LOG(transaction_t
 INSERT OR IGNORE INTO FUEL_TYPE (fuel_type_id, fuel_name, fuel_code, fuel_price) VALUES
     (1, 'Unleaded Petrol 95', 'ULD95', 23.30),
     (2, 'Diesel', '50PPM', 30.50),
-    (3, 'Unleaded Petrol 93', 'ULD93', 22.50);
+    (3, 'Unleaded Petrol 93', 'ULD93', 22.50),
+    (4, 'Paraffin (Retail)', 'PARAFFIN', 21.30);
 
 INSERT OR IGNORE INTO FILLING_STATION (station_name, brand, area, address, latitude, longitude, rating, reviews, available, maps_url, operating_hours, is_active, phone_number, manager_name) VALUES
     ('Unnamed Station', 'Unnamed Station', 'Unknown Area', 'No address', -29.29349935, 27.518469925, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.29349935&mlon=27.518469925&zoom=17', '24 hrs', 1, NULL, NULL),
     ('Puma', 'Puma', 'Maseru', 'Maseru', -29.310610542857145, 27.488018314285714, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.310610542857145&mlon=27.488018314285714&zoom=17', '24 hrs', 1, NULL, NULL),
     ('Total', 'Total', 'Corner Upper Thamae, Maseru', 'Corner Upper Thamae Rd & Main South 1', -29.3340542, 27.50905980909091, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3340542&mlon=27.50905980909091&zoom=17', '24 hrs', 1, NULL, NULL),
     ('mother and sons filling station', 'mother and sons filling station', 'Mothers and Sons', 'No address', -29.40273328, 27.565350619999997, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.40273328&mlon=27.565350619999997&zoom=17', '24 hrs', 1, NULL, NULL),
-    ('Unnamed Station', 'Unnamed Station', 'Unknown Area', 'Main South', -29.3355330125, 27.5094929, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3355330125&mlon=27.5094929&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Tsholo', 'Tsholo', 'Unknown Area', 'Main South', -29.3355330125, 27.5094929, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3355330125&mlon=27.5094929&zoom=17', '24 hrs', 1, NULL, NULL),
     ('Unnamed Station', 'Unnamed Station', 'Unknown Area', 'No address', -29.31683936, 27.483490940000003, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.31683936&mlon=27.483490940000003&zoom=17', '24 hrs', 1, NULL, NULL),
     ('Sekautu Tholo Filling Station', 'Tholo', 'Tholo Roma Ha Sekautu', 'No address', -29.44738822, 27.715465719999997, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.44738822&mlon=27.715465719999997&zoom=17', '08:00-21:00', 1, NULL, NULL),
     ('Puma', 'Puma', 'Unknown Area', 'Thabong Link', -29.3150731, 27.5106857, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3150731&mlon=27.5106857&zoom=17', '24 hrs', 1, NULL, NULL),
@@ -125,29 +126,29 @@ INSERT OR IGNORE INTO FILLING_STATION (station_name, brand, area, address, latit
     ('Total', 'TotalEnergies', 'Unknown Area', 'Main North 1', -29.2882647, 27.523698, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.2882647&mlon=27.523698&zoom=17', '24 hrs', 1, NULL, NULL);
 
 INSERT OR IGNORE INTO FUEL_AVAILABILITY (availability_id, station_id, fuel_type_id, is_available, price_per_litre, quantity_in_stock) VALUES
-    (1, 1, 1, 1, 617, 1200),
-    (2, 1, 2, 1, 620, 800),
-    (3, 1, 3, 1, 450, 500),
-    (4, 2, 1, 1, 620, 1000),
-    (5, 2, 2, 1, 621, 700),
-    (6, 3, 2, 0, 622, 0),
-    (7, 3, 3, 1, 455, 230),
-    (8, 4, 1, 1, 615, 1100),
-    (9, 4, 2, 1, 618, 450),
-    (10, 5, 1, 1, 625, 510),
-    (11, 5, 3, 1, 452, 220),
-    (12, 6, 1, 0, 619, 0),
-    (13, 6, 2, 1, 623, 350),
-    (14, 7, 1, 1, 616, 1300),
-    (15, 7, 2, 1, 619, 900),
-    (16, 7, 3, 1, 451, 600),
-    (17, 8, 1, 1, 618, 950),
-    (18, 8, 2, 1, 621, 550),
-    (19, 9, 1, 1, 617, 1150),
-    (20, 9, 2, 1, 620, 750),
-    (21, 9, 3, 1, 450, 400),
-    (22, 10, 1, 0, 619, 0),
-    (23, 10, 2, 1, 622, 300);
+    (1, 1, 1, 1, 23.30, 1200),
+    (2, 1, 2, 1, 30.50, 800),
+    (3, 1, 3, 1, 22.50, 500),
+    (4, 2, 1, 1, 23.30, 1000),
+    (5, 2, 2, 1, 30.50, 700),
+    (6, 3, 2, 0, 30.50, 0),
+    (7, 3, 3, 1, 22.50, 230),
+    (8, 4, 1, 1, 23.30, 1100),
+    (9, 4, 2, 1, 30.50, 450),
+    (10, 5, 1, 1, 23.30, 510),
+    (11, 5, 3, 1, 22.50, 220),
+    (12, 6, 1, 0, 23.30, 0),
+    (13, 6, 2, 1, 30.50, 350),
+    (14, 7, 1, 1, 23.30, 1300),
+    (15, 7, 2, 1, 30.50, 900),
+    (16, 7, 3, 1, 22.50, 600),
+    (17, 8, 1, 1, 23.30, 950),
+    (18, 8, 2, 1, 30.50, 550),
+    (19, 9, 1, 1, 23.30, 1150),
+    (20, 9, 2, 1, 30.50, 750),
+    (21, 9, 3, 1, 22.50, 400),
+    (22, 10, 1, 0, 23.30, 0),
+    (23, 10, 2, 1, 30.50, 300);
 
 INSERT OR IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`, `role`) VALUES 
     ('Thandy Letseka', 'thandy@gmail.com', '+26657663456', '$2b$10$40RrIvaX/9gbjXYTjN2pQOeDOozr6FzDAKiaxoEf2NTiL75JLuQYy', 'customer'),

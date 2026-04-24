@@ -22,9 +22,8 @@ export default function Header({ onLoadMap, onLocate }) {
       <div className={styles.left}>
         <div className={styles.logo} onClick={() => navigate('/')}>
           <div className={styles.flame}>⛽</div>
-          <span>FuelNow</span>
+          <span>MafuraFill</span>
         </div>
-
         {user && (
           <nav className={styles.nav}>
             <a 
@@ -37,7 +36,7 @@ export default function Header({ onLoadMap, onLocate }) {
             <a 
               href="#" 
               onClick={(e) => { e.preventDefault(); navigate('/stations') }}
-              className={`${styles.navLink} ${isActive('/stations') ? styles.active : ''}`}
+              className={`${styles.navLink} ${styles.stationLink} ${isActive('/stations') ? styles.active : ''}`}
             >
               📍 Stations
             </a>

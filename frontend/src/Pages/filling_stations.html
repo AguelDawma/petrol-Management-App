@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FuelNow – Nearest Filling Stations</title>
+<title>MafuraFill – Nearest Filling Stations</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -518,7 +518,7 @@
 <header>
   <div class="logo">
     <span class="logo-dot"></span>
-    FuelNow
+    MafuraFill
   </div>
   <div class="location-pill">
     <span class="location-pin">📍</span>
@@ -570,7 +570,7 @@ const stations = [
     reviewCount: 214,
     available: true,
     fuels: ["petrol", "diesel", "ULD93"],
-    price: 617,
+    price: 23.30,
     hours: "24 hrs",
   },
   {
@@ -586,7 +586,7 @@ const stations = [
     reviewCount: 187,
     available: true,
     fuels: ["petrol", "diesel"],
-    price: 620,
+    price: 23.30,
     hours: "6am – 10pm",
   },
   {
@@ -618,7 +618,7 @@ const stations = [
     reviewCount: 156,
     available: true,
     fuels: ["petrol", "diesel"],
-    price: 615,
+    price: 23.30,
     hours: "24 hrs",
   },
   {
@@ -634,7 +634,7 @@ const stations = [
     reviewCount: 112,
     available: true,
     fuels: ["petrol", "diesel", "ULD93"],
-    price: 618,
+    price: 23.30,
     hours: "6am – 11pm",
   },
   {
@@ -760,7 +760,7 @@ function filterStations() {
         <div>
           <div class="price-label">Petrol Price</div>
           <div class="price-value">
-            ${s.price ? `₦${s.price.toLocaleString()} <span class="price-unit">/litre</span>` : '<span style="color:#555;font-size:0.85rem">Unavailable</span>'}
+            ${s.price ? `M${s.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} <span class="price-unit">/litre</span>` : '<span style="color:#555;font-size:0.85rem">Unavailable</span>'}
           </div>
         </div>
         <button class="nav-btn" onclick="alert('Opening navigation to ${s.name}…')">

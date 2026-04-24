@@ -4,8 +4,8 @@
   justify-content: space-between;
   padding: 0 1.5rem;
   height: 64px;
-  background: linear-gradient(145deg, #121828 0%, #191f38 52%, #0f1322 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(135deg, #339e59 0%, #2a8a4b 35%, #1f6f38 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
   flex-shrink: 0;
   z-index: 200;
   gap: 20px;
@@ -60,7 +60,7 @@
 
 .navLink {
   padding: 8px 16px;
-  color: #999;
+  color: #f5fbf4;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;
@@ -70,14 +70,34 @@
 }
 
 .navLink:hover {
-  color: #f0ede8;
-  background: rgba(255, 90, 31, 0.1);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .navLink.active {
-  color: #ff5a1f;
-  background: rgba(255, 90, 31, 0.15);
-  border-bottom: 2px solid #ff5a1f;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+.stationLink {
+  color: #0f4c92;
+}
+
+.stationLink:hover {
+  color: #b1d1ff;
+}
+
+.stationLink.active {
+  color: #0f4c92;
+  background: rgba(15, 76, 146, 0.18);
+  border-bottom: 2px solid #0f4c92;
+}
+
+.stationLink.active {
+  color: #0f4c92;
+  background: rgba(15, 76, 146, 0.16);
+  border-bottom: 2px solid #0f4c92;
 }
 
 .right {
@@ -105,7 +125,7 @@
 }
 
 .logoutBtn {
-  background: #ff5a1f;
+  background: #12284c;
   color: white;
   border: none;
   border-radius: 6px;
@@ -117,27 +137,28 @@
 }
 
 .logoutBtn:hover {
-  background: #ff6a30;
-  box-shadow: 0 3px 10px rgba(255, 90, 31, 0.2);
+  background: #0d1e3d;
+  box-shadow: 0 3px 10px rgba(18, 40, 76, 0.3);
 }
 
 .locateBtn {
-  background: rgba(255, 90, 31, 0.15);
-  color: #ff5a1f;
-  border: 1px solid rgba(255, 90, 31, 0.3);
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 6px;
-  padding: 6px 14px;
+  padding: 8px 16px;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
 }
 
 .locateBtn:hover {
-  background: rgba(255, 90, 31, 0.25);
-  border-color: rgba(255, 90, 31, 0.5);
-  box-shadow: 0 3px 10px rgba(255, 90, 31, 0.15);
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 3px 12px rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
 }
 
 @media (max-width: 1024px) {

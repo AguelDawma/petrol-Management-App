@@ -56,9 +56,10 @@ CREATE TABLE IF NOT EXISTS `USER` (
 
 -- INSERT DATA
 INSERT IGNORE INTO FUEL_TYPE (fuel_type_id, fuel_name, fuel_code, fuel_price) VALUES
-    (1, 'Premium Motor Spirit', 'ULD95', 617),
-    (2, 'Diesel', '50PPM', 620),
-    (3, 'ULD93', 'ULD93', 450);
+    (1, 'Premium Motor Spirit', 'ULD95', 23.30),
+    (2, 'Diesel', '50PPM', 30.50),
+    (3, 'ULD93', 'ULD93', 22.50),
+    (4, 'Paraffin (Retail)', 'PARAFFIN', 21.30);
 
 INSERT IGNORE INTO FILLING_STATION (station_id, station_name, brand, area, address, latitude, longitude, rating, reviews, available, maps_url, operating_hours, is_active) VALUES
     (1, 'Shell Maseru', 'Shell', 'Kingsway', '123 Kingsway Road, Maseru', -29.6109, 27.5554, 4.7, 214, 1, 'https://www.google.com/maps/place/?q=place_id:ChIJ7aVxnOTH...','24 hrs', '24 hrs', 1),
@@ -69,18 +70,20 @@ INSERT IGNORE INTO FILLING_STATION (station_id, station_name, brand, area, addre
     (6, 'Engen Maseru', 'Engen', 'Moshoeshoe Road', '3 Moshoeshoe Road, Maseru', -29.6130, 27.5540, 3.5, 47, 0, '', '7am – 8pm', 1);
 
 INSERT IGNORE INTO FUEL_AVAILABILITY (availability_id, station_id, fuel_type_id, is_available, price_per_litre, quantity_in_stock) VALUES
-    (1, 1, 1, 1, 617, 1200),
-    (2, 1, 2, 1, 620, 800),
-    (3, 1, 3, 1, 450, 500),
-    (4, 2, 1, 1, 620, 1000),
-    (5, 2, 2, 1, 621, 700),
-    (6, 3, 2, 0, 622, 0),
-    (7, 3, 3, 1, 455, 230),
-    (8, 4, 1, 1, 615, 1100),
-    (9, 4, 2, 1, 618, 450),
-    (10, 5, 1, 1, 625, 510),
-    (11, 5, 3, 1, 452, 220),
-    (12, 6, 1, 0, 619, 0);INSERT IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Thandy', 'thandy@gmail.com', NULL, '$2b$10$40RrIvaX/9gbjXYTjN2pQOeDOozr6FzDAKiaxoEf2NTiL75JLuQYy');
+    (1, 1, 1, 1, 23.30, 1200),
+    (2, 1, 2, 1, 30.50, 800),
+    (3, 1, 3, 1, 22.50, 500),
+    (4, 2, 1, 1, 23.30, 1000),
+    (5, 2, 2, 1, 30.50, 700),
+    (6, 3, 2, 0, 30.50, 0),
+    (7, 3, 3, 1, 22.50, 230),
+    (8, 4, 1, 1, 23.30, 1100),
+    (9, 4, 2, 1, 30.50, 450),
+    (10, 5, 1, 1, 23.30, 510),
+    (11, 5, 3, 1, 22.50, 220),
+    (12, 6, 1, 0, 23.30, 0);
+
+INSERT IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Thandy', 'thandy@gmail.com', NULL, '$2b$10$40RrIvaX/9gbjXYTjN2pQOeDOozr6FzDAKiaxoEf2NTiL75JLuQYy');
 INSERT IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Test User', 'test_automation@example.com', '123', '$2b$10$iwZYNZP7i1OSq.whWKTPr.bplLfzb9dsbeKhE1nrZgl9OoVQw3kNO');
 INSERT IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Thapelo', 'thapelo@gmail.com', NULL, '$2b$10$vMK/tIA78GetPrqZ0iHtqO8nauBo4TnhTtSg1hHfWxnEUYDzNV2Bi');
 INSERT IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Test User', 'test@example.com', NULL, '$2b$10$hS10F0uEcS64e/JH1dxQwuMKK6WjdGiYibwcRT2UC/pGop7O8mFda');

@@ -9,12 +9,15 @@
 }
 
 .auth-card {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 16px;
   padding: 40px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.20);
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
 }
 
 .auth-card h2 {
@@ -72,7 +75,8 @@
 
 .auth-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 50%, #667eea 100%);
+  box-shadow: 0 6px 18px rgba(64, 166, 255, 0.32);
 }
 
 .auth-button:disabled {

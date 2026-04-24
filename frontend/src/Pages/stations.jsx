@@ -26,6 +26,8 @@ export default function Stations() {
   const [filter, setFilter] = useState('all')
   const [stations, setStations] = useState([])
   const [loading, setLoading] = useState(true)
+  const [locationLoading, setLocationLoading] = useState(true)
+  const [locationError, setLocationError] = useState(null)
   const mapRef = useRef(null)
   const routingControlRef = useRef(null)
   const watchIdRef = useRef(null)
@@ -49,7 +51,33 @@ export default function Stations() {
     fetchStations()
   }, [])
 
-  // Watch user location continuously
+  // Request user location immediately on page load
+  useEffect(() => {
+    if (!navigator.geolocation) {
+      setLocationLoading(false)
+      return
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        setUserLat(pos.coords.latitude)
+        setUserLng(pos.coords.longitude)
+        setLocationLoading(false)
+      },
+      err => {
+        console.error('Geolocation error:', err)
+        setLocationLoading(false)
+        // Keep default location if initial request fails
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 15000,
+        maximumAge: 0
+      }
+    )
+  }, [])
+
+  // Watch user location continuously for real-time updates
   useEffect(() => {
     if (!navigator.geolocation) return
 
@@ -59,13 +87,13 @@ export default function Stations() {
         setUserLng(pos.coords.longitude)
       },
       err => {
-        console.error('Geolocation error:', err)
-        // Keep default location if watching fails
+        console.error('Geolocation watch error:', err)
+        // Don't show alerts for every error - keep current location
       },
       {
         enableHighAccuracy: true,
         timeout: 10000,
-        maximumAge: 30000
+        maximumAge: 5000
       }
     )
 
@@ -76,6 +104,24 @@ export default function Stations() {
         navigator.geolocation.clearWatch(watchIdRef.current)
       }
     }
+  }, [])
+
+  const handleRate = useCallback(async (stationId, rating) => {
+    // Update the station's rating and review count locally
+    setStations(prevStations =>
+      prevStations.map(station => {
+        if (station.id === stationId) {
+          const newReviews = station.reviews + 1
+          const newRating = ((station.rating * station.reviews) + rating) / newReviews
+          return {
+            ...station,
+            rating: newRating,
+            reviews: newReviews
+          }
+        }
+        return station
+      })
+    )
   }, [])
 
   // Initialize map
@@ -190,18 +236,39 @@ export default function Stations() {
 
   const handleLocate = useCallback(() => {
     if (!navigator.geolocation) {
-      alert('Geolocation is not supported by your browser.')
+      setLocationError('Geolocation is not supported by your browser.')
       return
     }
 
+    setLocationLoading(true)
     navigator.geolocation.getCurrentPosition(
       pos => {
         setUserLat(pos.coords.latitude)
         setUserLng(pos.coords.longitude)
+        setLocationError(null)
+        setLocationLoading(false)
       },
-      () => alert('Location access denied. Using default Maseru centre.')
+      err => {
+        setLocationLoading(false)
+        
+        if (err.code === err.PERMISSION_DENIED) {
+          setLocationError('permission-denied')
+        } else if (err.code === err.POSITION_UNAVAILABLE) {
+          setLocationError('unavailable')
+        } else if (err.code === err.TIMEOUT) {
+          setLocationError('timeout')
+        } else {
+          setLocationError('unknown')
+        }
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 0
+      }
     )
   }, [])
+
 
   const handleNavigate = useCallback(station => {
     window.open(
@@ -228,6 +295,82 @@ export default function Stations() {
               Browse stations and view routes to your destination on the map.
             </p>
           </div>
+
+          {locationLoading && (
+            <div style={{
+              background: 'rgba(44, 157, 100, 0.1)',
+              border: '1px solid rgba(44, 157, 100, 0.3)',
+              color: '#2c9d64',
+              padding: '12px 16px',
+              borderRadius: '8px',
+              marginBottom: '16px',
+              fontSize: '0.9rem',
+              textAlign: 'center'
+            }}>
+              📍 <strong>Detecting your location...</strong> This helps us show nearby stations first.
+            </div>
+          )}
+
+          {locationError === 'permission-denied' && (
+            <div style={{
+              background: 'rgba(220, 38, 38, 0.1)',
+              border: '1px solid rgba(220, 38, 38, 0.3)',
+              color: '#dc2626',
+              padding: '12px 16px',
+              borderRadius: '8px',
+              marginBottom: '16px',
+              fontSize: '0.9rem',
+              lineHeight: '1.5'
+            }}>
+              <strong>📍 Location Permission Denied</strong><br/>
+              Please enable location access in your browser:<br/>
+              <strong>Chrome:</strong> Settings → Privacy and security → Site settings → Location<br/>
+              <strong>Firefox:</strong> Settings → Privacy → Permissions → Location<br/>
+              <strong>Safari:</strong> Settings → Privacy → Allow location access
+            </div>
+          )}
+
+          {locationError === 'timeout' && (
+            <div style={{
+              background: 'rgba(220, 38, 38, 0.1)',
+              border: '1px solid rgba(220, 38, 38, 0.3)',
+              color: '#dc2626',
+              padding: '12px 16px',
+              borderRadius: '8px',
+              marginBottom: '16px',
+              fontSize: '0.9rem'
+            }}>
+              ⏱️ <strong>Location request timed out.</strong> Make sure your device's GPS is enabled and try again.
+            </div>
+          )}
+
+          {locationError === 'unavailable' && (
+            <div style={{
+              background: 'rgba(220, 38, 38, 0.1)',
+              border: '1px solid rgba(220, 38, 38, 0.3)',
+              color: '#dc2626',
+              padding: '12px 16px',
+              borderRadius: '8px',
+              marginBottom: '16px',
+              fontSize: '0.9rem'
+            }}>
+              📍 <strong>Location information unavailable.</strong> Please check your GPS connection and try again.
+            </div>
+          )}
+
+          {!locationLoading && !locationError && (userLat === DEFAULT_LAT && userLng === DEFAULT_LNG) && (
+            <div style={{
+              background: 'rgba(255, 193, 7, 0.1)',
+              border: '1px solid rgba(255, 193, 7, 0.3)',
+              color: '#f59e0b',
+              padding: '12px 16px',
+              borderRadius: '8px',
+              marginBottom: '16px',
+              fontSize: '0.9rem'
+            }}>
+              ⚠️ <strong>Using default location</strong> - Click "Use Device Location" to see stations near you.
+            </div>
+          )}
 
           <div className="controls">
             <button className="view-go-btn" onClick={handleLocate}>Use Device Location</button>
@@ -273,6 +416,7 @@ export default function Stations() {
                   index={i}
                   onSelect={setSelectedId}
                   onNavigate={handleNavigate}
+                  onRate={handleRate}
                 />
               ))
             )}

@@ -1,6 +1,6 @@
 .card {
   background: var(--surface2);
-  box-shadow: 12px 12px 24px rgba(0, 0, 0, 0.85);
+  box-shadow: 12px 12px 24px rgba(254, 255, 255, 0.3);
   border-radius: 14px;
   padding: 14px;
   cursor: pointer;
@@ -8,13 +8,14 @@
   animation: slideIn 0.4s ease both;
   position: relative;
   overflow: hidden;
+  border: 1px solid rgb(248, 249, 249);
 }
 
 .card::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 85% 15%, var(--orange-dim), transparent 60%);
+  background: radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.18), transparent 55%);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s;
@@ -24,7 +25,7 @@
   border-color: var(--border-hover);
   background: rgba(255, 69, 0, 0.04);
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 16px 30px rgba(34, 197, 94, 0.16);
 }
 
 .card:hover::after {
@@ -45,6 +46,22 @@
   width: 3px;
   background: var(--orange);
   border-radius: 0 3px 3px 0;
+}
+
+.stationImageWrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 18px;
+  margin-bottom: 14px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.1));
+}
+
+.stationImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .top {
@@ -122,12 +139,40 @@
   font-size: 0.82rem;
 }
 
+.interactive {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.interactive:hover {
+  transform: scale(1.2);
+}
+
 .on {
   color: var(--yellow);
 }
 
 .off {
   color: var(--text-muted);
+}
+
+.glow {
+  animation: starGlow 1.5s ease-out forwards;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.8), 0 0 16px rgba(255, 215, 0, 0.5);
+}
+
+@keyframes starGlow {
+  0% {
+    text-shadow: 0 0 8px rgba(255, 215, 0, 1), 0 0 16px rgba(255, 215, 0, 0.8), 0 0 24px rgba(255, 215, 0, 0.6);
+    transform: scale(1.3);
+  }
+  50% {
+    text-shadow: 0 0 12px rgba(255, 215, 0, 0.9), 0 0 20px rgba(255, 215, 0, 0.6);
+  }
+  100% {
+    text-shadow: 0 0 4px rgba(255, 215, 0, 0);
+    transform: scale(1);
+  }
 }
 
 .score {
@@ -231,19 +276,21 @@
 .navBtn {
   display: flex;
   align-items: center;
-  gap: 4px;
-  background: var(--orange);
+  gap: 6px;
+  justify-content: center;
+  background: #22c55e;
   color: white;
   border: none;
-  border-radius: 8px;
-  padding: 5px 12px;
-  font-size: 0.72rem;
-  font-weight: 600;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 0.82rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: opacity 0.2s, transform 0.15s;
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 .navBtn:hover {
-  opacity: 0.85;
+  background: #16a34a;
   transform: scale(1.05);
+  box-shadow: 0 8px 18px rgba(34, 197, 94, 0.3);
 }
