@@ -97,12 +97,10 @@ INSERT OR IGNORE INTO FUEL_TYPE (fuel_type_id, fuel_name, fuel_code, fuel_price)
     (4, 'Paraffin (Retail)', 'PARAFFIN', 21.30);
 
 INSERT OR IGNORE INTO FILLING_STATION (station_name, brand, area, address, latitude, longitude, rating, reviews, available, maps_url, operating_hours, is_active, phone_number, manager_name) VALUES
-    ('Unnamed Station', 'Unnamed Station', 'Unknown Area', 'No address', -29.29349935, 27.518469925, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.29349935&mlon=27.518469925&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Tholo Filling Station', 'Tholo', 'Maseru, Lesotho', 'No address', -29.29349935, 27.518469925, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.29349935&mlon=27.518469925&zoom=17', '24 hrs', 1, NULL, NULL),
     ('Puma', 'Puma', 'Maseru', 'Maseru', -29.310610542857145, 27.488018314285714, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.310610542857145&mlon=27.488018314285714&zoom=17', '24 hrs', 1, NULL, NULL),
     ('Total', 'Total', 'Corner Upper Thamae, Maseru', 'Corner Upper Thamae Rd & Main South 1', -29.3340542, 27.50905980909091, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3340542&mlon=27.50905980909091&zoom=17', '24 hrs', 1, NULL, NULL),
     ('mother and sons filling station', 'mother and sons filling station', 'Mothers and Sons', 'No address', -29.40273328, 27.565350619999997, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.40273328&mlon=27.565350619999997&zoom=17', '24 hrs', 1, NULL, NULL),
-    ('Tsholo', 'Tsholo', 'Unknown Area', 'Main South', -29.3355330125, 27.5094929, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3355330125&mlon=27.5094929&zoom=17', '24 hrs', 1, NULL, NULL),
-    ('Unnamed Station', 'Unnamed Station', 'Unknown Area', 'No address', -29.31683936, 27.483490940000003, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.31683936&mlon=27.483490940000003&zoom=17', '24 hrs', 1, NULL, NULL),
     ('Sekautu Tholo Filling Station', 'Tholo', 'Tholo Roma Ha Sekautu', 'No address', -29.44738822, 27.715465719999997, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.44738822&mlon=27.715465719999997&zoom=17', '08:00-21:00', 1, NULL, NULL),
     ('Puma', 'Puma', 'Unknown Area', 'Thabong Link', -29.3150731, 27.5106857, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3150731&mlon=27.5106857&zoom=17', '24 hrs', 1, NULL, NULL),
     ('Puma', 'Puma', 'Unknown Area', 'Principal Highway', -29.3687621, 27.5377439, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3687621&mlon=27.5377439&zoom=17', '24 hrs', 1, NULL, NULL),
@@ -110,7 +108,6 @@ INSERT OR IGNORE INTO FILLING_STATION (station_name, brand, area, address, latit
     ('Lake Site Filling Station', 'Lake Site Filling Station', 'Unknown Area', 'No address', -29.3127952, 27.5100366, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3127952&mlon=27.5100366&zoom=17', '24 hrs', 1, NULL, NULL),
     ('Mochaochele', 'Shell', 'Unknown Area', 'No address', -29.4113716, 27.6194745, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.4113716&mlon=27.6194745&zoom=17', '24 hrs', 1, NULL, NULL),
     ('Pioneer Filling Station', 'Engen', 'Pioneer, Maseru', 'Pioneer Road', -29.3147122, 27.4794926, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3147122&mlon=27.4794926&zoom=17', 'Mo-Su,PH 00:00+', 1, NULL, NULL),
-    ('Unnamed Station', 'Unnamed Station', 'Unknown Area', 'No address', -29.4196271, 27.561662, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.4196271&mlon=27.561662&zoom=17', '24 hrs', 1, NULL, NULL),
     ('Sparrows', 'Puma', 'Unknown Area', 'Dove Road', -29.3157524, 27.4799403, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3157524&mlon=27.4799403&zoom=17', '24 hrs', 1, NULL, NULL),
     ('Engen', 'Engen', 'Unknown Area', 'No address', -29.3373962, 27.5107428, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3373962&mlon=27.5107428&zoom=17', '24 hrs', 1, NULL, NULL),
     ('PUMA', 'Puma', 'Unknown Area', 'No address', -29.6228558, 27.4963254, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.6228558&mlon=27.4963254&zoom=17', '24 hrs', 1, NULL, NULL),
@@ -119,7 +116,6 @@ INSERT OR IGNORE INTO FILLING_STATION (station_name, brand, area, address, latit
     ('Total', 'Total', 'Unknown Area', 'No address', -29.4024404, 27.7952082, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.4024404&mlon=27.7952082&zoom=17', '24 hrs', 1, NULL, NULL),
     ('Puma', 'Puma', 'Unknown Area', 'Pope John Paul II Road', -29.3323966, 27.4856952, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3323966&mlon=27.4856952&zoom=17', '24/7', 1, NULL, NULL),
     ('Masianokeng Filling Station', 'Puma', 'Masianokeng', 'Principal Highway', -29.4044703, 27.5618515, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.4044703&mlon=27.5618515&zoom=17', '24/7', 1, NULL, NULL),
-    ('Unnamed Station', 'Unnamed Station', 'Unknown Area', 'No address', -29.3610894, 27.528495, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3610894&mlon=27.528495&zoom=17', '24 hrs', 1, NULL, NULL),
     ('Puma', 'Puma', 'Unknown Area', 'Main North 1', -29.3062787, 27.5146181, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3062787&mlon=27.5146181&zoom=17', '24 hrs', 1, NULL, NULL),
     ('Puma', 'Puma', 'Unknown Area', 'No address', -29.3400753, 27.513741, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3400753&mlon=27.513741&zoom=17', '24/7', 1, NULL, NULL),
     ('Roma Filling Station', 'Roma Filling Station', 'Roma', 'Roma', -29.4518024, 27.720777, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.4518024&mlon=27.720777&zoom=17', '24 hrs', 1, NULL, NULL),
@@ -186,8 +182,11 @@ INSERT OR IGNORE INTO TRANSACTION_LOG (transaction_id, user_id, station_id, tran
     (10, 3, 3, 'STATION_VIEWED', 'Viewed station details', 'completed'),
     (11, 4, 4, 'DIRECTIONS_REQUEST', 'Requested directions', 'completed'),
     (12, 5, 5, 'PRICE_CHECK', 'Checked fuel prices', 'completed');
+
 INSERT OR IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Test User', 'test@example.com', NULL, '$2b$10$hS10F0uEcS64e/JH1dxQwuMKK6WjdGiYibwcRT2UC/pGop7O8mFda');
 INSERT OR IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Mirror', 'mirror@gmail.com', NULL, '$2b$10$LCN7oh0gYFJ.xYbeTD2py.YkQdh//jMVWy94SltqVaI7Rsay9jhuy');
 INSERT OR IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Test User2', 'test2@example.com', NULL, '$2b$10$lgpfmjHEI9vt3OQp74YLzexUXICHGnickP.kUW1x0FcrpoyyXQmWy');
 INSERT OR IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Thapelo Peter', 'thapelopeter@gmail.com', NULL, '$2b$10$5Y.c.FCv28/z.ESAyjRdgu0XkfvVKGCHO.zvG7m7oQY68zxsgmkIa');
 INSERT OR IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('New Test User', 'newtest@example.com', NULL, '$2b$10$VL3VXZxYBe051fxgoc9ase5FQ3BjGCsitgXn/ChVh0cvvdmNsY/iu');
+INSERT OR IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Nair', 'Naira@gmail.com', '62060689', '$2b$10$CmF1qQaGPC3SbjLSKL0eWuSDVcxiRsEnPJKvz/1XdQTpOKggtd0La');
+INSERT OR IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Naira', 'Naira2@gmail.com', '62060689', '$2b$10$DiV6pyyliYKae0teZhhBku8Dbndvu1dlPVvdkEgx9xreThyyktGl2');

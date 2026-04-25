@@ -123,3 +123,5 @@ INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address
 INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Unnamed Station', 'Unknown Brand', 'Unknown Area', 'No address', 6.5815761, 3.3934106, '24 hrs', 1);
 INSERT OR IGNORE INTO FILLING_STATION (`station_name`, `brand`, `area`, `address`, `latitude`, `longitude`, `operating_hours`, `is_active`) VALUES ('Unnamed Station', 'Unknown Brand', 'Unknown Area', 'No address', 6.5810502, 3.3928851, '24 hrs', 1);
 INSERT IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('New Test User', 'newtest@example.com', NULL, '$2b$10$VL3VXZxYBe051fxgoc9ase5FQ3BjGCsitgXn/ChVh0cvvdmNsY/iu');
+INSERT IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Nair', 'Naira@gmail.com', '62060689', '$2b$10$CmF1qQaGPC3SbjLSKL0eWuSDVcxiRsEnPJKvz/1XdQTpOKggtd0La');
+INSERT IGNORE INTO `USER` (`full_name`, `email`, `phone_number`, `password_hash`) VALUES ('Naira', 'Naira2@gmail.com', '62060689', '$2b$10$DiV6pyyliYKae0teZhhBku8Dbndvu1dlPVvdkEgx9xreThyyktGl2');
