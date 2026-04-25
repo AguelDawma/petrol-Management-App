@@ -589,6 +589,7 @@ app.delete('/api/stations/:id', authenticateToken, async (req, res) => {
             // Soft delete - set is_active to 0
             db.run(
                 'UPDATE FILLING_STATION SET is_active = 0, updated_at = CURRENT_TIMESTAMP WHERE station_id = ?',
+                //'DELETE FROM FILLING_STATION WHERE station_id = ?',
                 [id],
                 function(err) {
                     if (err) {
