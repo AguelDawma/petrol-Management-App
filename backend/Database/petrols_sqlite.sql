@@ -118,7 +118,7 @@ INSERT OR IGNORE INTO FILLING_STATION (station_name, brand, area, address, latit
     ('Masianokeng Filling Station', 'Puma', 'Masianokeng', 'Principal Highway', -29.4044703, 27.5618515, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.4044703&mlon=27.5618515&zoom=17', '24/7', 1, NULL, NULL),
     ('Puma', 'Puma', 'Unknown Area', 'Main North 1', -29.3062787, 27.5146181, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3062787&mlon=27.5146181&zoom=17', '24 hrs', 1, NULL, NULL),
     ('Puma', 'Puma', 'Unknown Area', 'No address', -29.3400753, 27.513741, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.3400753&mlon=27.513741&zoom=17', '24/7', 1, NULL, NULL),
-    ('Roma Filling Station', 'Roma Filling Station', 'Roma', 'Roma', -29.4518024, 27.720777, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.4518024&mlon=27.720777&zoom=17', '24 hrs', 1, NULL, NULL),
+    ('Roma Filling Station', 'Puma', 'Roma', 'Roma', -29.4518024, 27.720777, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.4518024&mlon=27.720777&zoom=17', '24 hrs', 1, NULL, NULL),
     ('Total', 'TotalEnergies', 'Unknown Area', 'Main North 1', -29.2882647, 27.523698, 0, 0, 1, 'https://www.openstreetmap.org/?mlat=-29.2882647&mlon=27.523698&zoom=17', '24 hrs', 1, NULL, NULL);
 
 INSERT OR IGNORE INTO FUEL_AVAILABILITY (availability_id, station_id, fuel_type_id, is_available, price_per_litre, quantity_in_stock) VALUES

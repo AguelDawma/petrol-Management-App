@@ -60,7 +60,7 @@ export default function MapView({ stations, selectedId, userLat, userLng, mapLoa
 
       const marker = new window.google.maps.Marker({
         position: { lat: s.lat, lng: s.lng },
-        position: { Lat: -29.450620729630778, Lng: 27.722084880029094 },
+        position: { lat: -29.450704502442917, lng: 27.721950984456814 },
         map: mapObj.current,
         title: s.name,
         icon: {
